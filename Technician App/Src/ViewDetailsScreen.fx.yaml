@@ -1,0 +1,1349 @@
+ViewDetailsScreen As screen:
+
+    Container5_1 As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        Width: =Parent.Width
+        ZIndex: =1
+
+        ctnHeaderVDS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/13.5
+                ///If(Parent.Height<Parent.Width,Parent.Height/6,Parent.Height/18)
+                If(Parent.Height<Parent.Width,60,80)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =Parent.Width/1.02
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width
+            X: =0.00
+            ZIndex: =1
+
+            iconBackCL_2 As icon.BackArrow:
+                Color: =RGBA(255, 0, 0, 1)
+                Height: =55
+                Icon: =Icon.BackArrow
+                OnSelect: |-
+                    =Navigate(SubmittedLeadScreen);
+                    UpdateContext({locInfoExpanded:false})
+                PaddingBottom: =5
+                PaddingLeft: =20
+                PaddingTop: =5
+                Width: =55
+                X: =18
+                Y: =11
+                ZIndex: =1
+
+            lblHeaderCL_2 As label:
+                Color: =RGBA(116, 116, 116, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                FontWeight: =FontWeight.Bold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                PaddingLeft: =20
+                PaddingRight: =5.34
+                Size: |
+                    =//21.36
+                    If(Parent.Width<500,14,Parent.Width>500,22,12)
+                Text: ="Technicians Lead Generation"
+                Width: =Parent.Width-imgSchindlerLogoCL_2.Width-iconBackCL_2.Width
+                X: =96.12
+                ZIndex: =2
+
+            imgSchindlerLogoCL_2 As image:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                Image: ='3x'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                PaddingTop: =0.00
+                Width: =Parent.Width/7.5
+                X: =0.00
+                ZIndex: =3
+
+        ctnUserHeaderVDS As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.Center
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/14
+                If(Parent.Height<Parent.Width,Parent.Height/10,Parent.Height/16)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width-40
+            X: =21.36
+            Y: =ctnHeaderVDS.Y+ctnHeaderVDS.Height+10
+            ZIndex: =2
+
+            btnheaderCL_2 As button:
+                Align: =Align.Right
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =100
+                PaddingRight: =20
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,14,Parent.Width>500,20,18)
+                Text: ="Lead Details"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lblUserNameCL_2 As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingRight: =10
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,14,Parent.Width>500,20,18)
+                Text: =User().FullName
+                Width: =Parent.Width/2
+                ZIndex: =2
+
+        Container2 As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =SummaryForm_3.Height+glryImageLSS_2.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            ZIndex: =3
+
+            SummaryForm_3 As form:
+                DataSource: =LeadInformations
+                DefaultMode: =FormMode.View
+                FillPortions: =0
+                Height: ='Contract Number_DataCard1_3'.Height+'Building Name_DataCard2_3'.Height+PinCode_DataCard2_3.Height+Address_DataCard2_3.Height+UnitCount_DataCard3_3.Height+UnitDescription_DataCard3_3.Height+PrimaryScopeofWorkLID_DataCard1.Height+SecondaryScopeofWorkLID_DataCard1.Height+ManuallyScopeOfWork_DataCard3_3.Height+EstimatedHours_DataCard1_4.Height+Material_DataCard1_4.Height+'Unit Down_DataCard2_4'.Height+'Additional expenses required_DataCard2_3'.Height+'Travel Required_DataCard2_3'.Height+'Communicated to Customer_DataCard2_3'.Height+10
+                Item: =VarFormMode
+                LayoutMinHeight: =250
+                LayoutMinWidth: =400
+                Width: =Parent.Width
+                Y: =10
+                ZIndex: =1
+
+                "'Contract Number_DataCard1_3' As typedDataCard.textualEditCard":
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_contractnumber"
+                    Default: =ThisItem.'ContractNumber '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_contractnumber")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_contractnumber")
+                    Required: =false
+                    Update: =DataCardValue25_3.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                    DataCardKey26_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =48
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Contract Number"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue25_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Parent.Default
+                            //Gallery1.Selected.'Contract Number'
+                            //ContractNumber
+                            ThisItem.'ContractNumber '
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey26_3.Y + DataCardKey26_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage26_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue25_3.Y + DataCardValue25_3.Height
+                        ZIndex: =3
+
+                    StarVisible26_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey26_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey26_3.Y
+                        ZIndex: =4
+
+                "'Building Name_DataCard2_3' As typedDataCard.textualEditCard":
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_name"
+                    Default: =ThisItem.'LeadInformation '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_buildingname")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_buildingname")
+                    Required: =false
+                    Update: =DataCardValue33_3.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =1
+                    ZIndex: =1
+
+                    DataCardKey34_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =48
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: |-
+                            =//Parent.DisplayName
+                            "Building Name"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue33_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Parent.Default
+                            //Gallery1.Selected.BuildingName
+                            ThisItem.'BuildingName '
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey34_3.Y + DataCardKey34_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage34_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue33_3.Y + DataCardValue33_3.Height
+                        ZIndex: =3
+
+                    StarVisible34_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey34_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey34_3.Y
+                        ZIndex: =4
+
+                PinCode_DataCard2_3 As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_pincode"
+                    Default: =ThisItem.'ZipCode '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_zipcode")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =100
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_zipcode")
+                    Required: =false
+                    Update: =DataCardValue1_3.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =2
+                    ZIndex: =1
+
+                    DataCardKey1_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        FontWeight: =FontWeight.Bold
+                        Height: =48
+                        Size: |-
+                            =//21
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue1_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.'ZipCode (crd59_pincode)'
+                            ThisItem.'ZipCode '
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//21
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey1_3.Y + DataCardKey1_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage1_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue1_3.Y + DataCardValue1_3.Height
+                        ZIndex: =3
+
+                    StarVisible1_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey1_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey1_3.Y
+                        ZIndex: =4
+
+                Address_DataCard2_3 As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_address"
+                    Default: =ThisItem.Address
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_address")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_address")
+                    Required: =false
+                    Update: =DataCardValue32_3.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =3
+                    ZIndex: =1
+
+                    DataCardKey33_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =48
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue32_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.Address
+                            ThisItem.Address
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey33_3.Y + DataCardKey33_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage33_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue32_3.Y + DataCardValue32_3.Height
+                        ZIndex: =3
+
+                    StarVisible33_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey33_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey33_3.Y
+                        ZIndex: =4
+
+                UnitCount_DataCard3_3 As typedDataCard.numberEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_unitcount"
+                    Default: =ThisItem.NumberofUnits
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_numberofunits")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    Required: =false
+                    Update: =Value(DataCardValue29_3.Text)
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =4
+                    ZIndex: =1
+
+                    DataCardKey30_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =48
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="No of Units"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue29_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.UnitCount
+                            ThisItem.NumberofUnits
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Format: =TextFormat.Number
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey30_3.Y + DataCardKey30_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage30_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue29_3.Y + DataCardValue29_3.Height
+                        ZIndex: =3
+
+                    StarVisible30_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey30_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey30_3.Y
+                        ZIndex: =4
+
+                UnitDescription_DataCard3_3 As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_unitdescription"
+                    Default: =ThisItem.UnitDescription
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_unitdescription")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_unitdescription")
+                    Required: =false
+                    Update: =DataCardValue30_3.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =5
+                    ZIndex: =1
+
+                    DataCardKey31_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =48
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Unit Description"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue30_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.UnitDescription
+                            ThisItem.UnitDescription
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =70
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey31_3.Y + DataCardKey31_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage31_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue30_3.Y + DataCardValue30_3.Height
+                        ZIndex: =3
+
+                    StarVisible31_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey31_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey31_3.Y
+                        ZIndex: =4
+
+                PrimaryScopeofWorkLID_DataCard1 As typedDataCard.comboBoxEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="shlrf_PrimaryScopeofWorkLID"
+                    Default: =ThisItem.PrimaryScopeofWorkLID
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_PrimaryScopeofWorkLID")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    Required: =false
+                    Update: =DataCardValue1.Selected
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =6
+                    ZIndex: =1
+
+                    DataCardKey1 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        Size: =If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Scope"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue1 As combobox:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        ChevronBackground: =RGBA(0, 0, 0, 1)
+                        Default: =ThisItem.PrimaryScopeofWorkLID
+                        DefaultSelectedItems: =ThisItem.PrimaryScopeofWorkLID
+                        DisplayFields: =["shlrf_primaryscopeofworkname"]
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Items: =Choices([@LeadInformations].shlrf_PrimaryScopeofWorkLID)
+                        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                        SearchFields: =["shlrf_primaryscopeofworkname"]
+                        SearchItems: =Search(Choices([@LeadInformations].shlrf_PrimaryScopeofWorkLID),DataCardValue1.SearchText,"shlrf_primaryscopeofworkname")
+                        SelectMultiple: =false
+                        Size: =If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey1.Y + DataCardKey1.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage1 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue1.Y + DataCardValue1.Height
+                        ZIndex: =3
+
+                    StarVisible1 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey1.Height
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey1.Y
+                        ZIndex: =4
+
+                SecondaryScopeofWorkLID_DataCard1 As typedDataCard.comboBoxEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="shlrf_SecondaryScopeofWorkLID"
+                    Default: =ThisItem.SecondaryScopeofWorkLID
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_SecondaryScopeofWorkLID")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    Required: =false
+                    Update: =DataCardValue2.Selected
+                    Width: =Parent.Width
+                    X: =1
+                    Y: =6
+                    ZIndex: =1
+
+                    DataCardKey2 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =34
+                        Size: =If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Scope of work"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue2 As combobox:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        ChevronBackground: =RGBA(0, 0, 0, 1)
+                        Default: =LookUp(SecondaryScopeofWorks,ID=ThisItem.SecondaryScopeofWorkLID.ID)
+                        DefaultSelectedItems: =LookUp(SecondaryScopeofWorks,ID=ThisItem.SecondaryScopeofWorkLID.ID)
+                        DisplayFields: =["shlrf_secondaryscopeofworkname"]
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Items: =SecondaryScopeofWorks
+                        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                        SearchFields: =["shlrf_secondaryscopeofworkname"]
+                        SearchItems: =Search(SecondaryScopeofWorks,DataCardValue2.SearchText,"shlrf_secondaryscopeofworkname")
+                        SelectionFill: =RGBA(0, 0, 0, 1)
+                        SelectMultiple: =false
+                        Size: =If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey2.Y + DataCardKey2.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage2 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue2.Y + DataCardValue2.Height
+                        ZIndex: =3
+
+                    StarVisible2 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey2.Height
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey2.Y
+                        ZIndex: =4
+
+                ManuallyScopeOfWork_DataCard3_3 As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_manuallyscopeofwork"
+                    Default: =ThisItem.CustomScopeofWork
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_customscopeofwork")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength, "shlrf_customscopeofwork")
+                    Required: =false
+                    Update: =DataCardValue26_3.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =7
+                    ZIndex: =1
+
+                    DataCardKey27_3 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Scope of Work (Manually Entered)"
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue26_3 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.ManuallyScopeOfWork
+                            ThisItem.CustomScopeofWork
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey27_3.Y + DataCardKey27_3.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage27_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue26_3.Y + DataCardValue26_3.Height
+                        ZIndex: =3
+
+                    StarVisible27_3 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey27_3.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey27_3.Y
+                        ZIndex: =4
+
+                EstimatedHours_DataCard1_4 As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_estimatedhours"
+                    Default: =ThisItem.'EstimatedHours '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_estimatedhours")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength, "shlrf_estimatedhours")
+                    Required: =false
+                    Update: =DataCardValue18_4.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =8
+                    ZIndex: =1
+
+                    DataCardKey19_4 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =48
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Estimated Hours (Total Man Hours)"
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue18_4 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.EstimatedHours
+                            ThisItem.'EstimatedHours '
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey19_4.Y + DataCardKey19_4.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage19_4 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue18_4.Y + DataCardValue18_4.Height
+                        ZIndex: =3
+
+                    StarVisible19_4 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey19_4.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey19_4.Y
+                        ZIndex: =4
+
+                Material_DataCard1_4 As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_material"
+                    Default: |-
+                        =//ThisItem.Notes
+                        ThisItem.Notes
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_notes")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_notes")
+                    Required: =false
+                    Update: =DataCardValue19_4.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =9
+                    ZIndex: =1
+
+                    DataCardKey20_4 As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        FontWeight: =FontWeight.Bold
+                        Height: =48
+                        Size: |-
+                            =//21
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Material, Part Number and other things"
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    DataCardValue19_4 As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: |-
+                            =//Gallery1.Selected.Material
+                            ThisItem.Notes
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: |-
+                            =//21
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardKey20_4.Y + DataCardKey20_4.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessage20_4 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =DataCardValue19_4.Y + DataCardValue19_4.Height
+                        ZIndex: =3
+
+                    StarVisible20_4 As label:
+                        Align: =Align.Center
+                        Height: =DataCardKey20_4.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =DataCardKey20_4.Y
+                        ZIndex: =4
+
+                "'Unit Down_DataCard2_4' As typedDataCard.comboBoxOptionSetSingleEditCard":
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_checklist"
+                    Default: |-
+                        =//ThisItem.'Unit Down'
+                        ThisItem.IsUnitDown
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_isunitdown")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =60
+                    Required: =false
+                    Update: =
+                    Visible: |-
+                        =//If(Gallery1.Selected.'Unit Down'='Unit Down (LeadInformations)'.Yes,true,false)
+                        If(ThisItem.IsUnitDown='IsUnitDown (LeadInformations)'.Yes,true,false)
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =10
+                    ZIndex: =1
+
+                    ErrorMessage25_4 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =Checkbox4_16.Y + Checkbox4_16.Height
+                        ZIndex: =3
+
+                    StarVisible25_4 As label:
+                        Align: =Align.Center
+                        Height: =Checkbox4_16.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =Checkbox4_16.Y
+                        ZIndex: =4
+
+                    Checkbox4_16 As checkbox:
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        Default: =true
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =57
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Unit Down"
+                        Visible: =If(ThisItem.IsUnitDown='IsUnitDown (LeadInformations)'.Yes,true,false)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =18
+                        ZIndex: =5
+
+                "'Additional expenses required_DataCard2_3' As typedDataCard.comboBoxOptionSetSingleEditCard":
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_additionalexpensesrequired"
+                    Default: |
+                        =ThisItem.AdditionalExpensesRequired
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_additionalexpensesrequired")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =61
+                    Required: =false
+                    Update: =
+                    Visible: =If(ThisItem.AdditionalExpensesRequired='AdditionalExpensesRequired (LeadInformations)'.Yes,true,false)
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =11
+                    ZIndex: =1
+
+                    ErrorMessage10_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =
+                        ZIndex: =3
+
+                    StarVisible10_3 As label:
+                        Align: =Align.Center
+                        Height: =
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =
+                        ZIndex: =4
+
+                    Checkbox4_17 As checkbox:
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        Default: =true
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Additional Expenses Required"
+                        Visible: |-
+                            =//If(Gallery1.Selected.'Additional expenses required'='Additional expenses required (LeadInformations)'.Yes,true,false)
+                            If(ThisItem.AdditionalExpensesRequired='AdditionalExpensesRequired (LeadInformations)'.Yes,true,false)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        ZIndex: =5
+
+                "'Travel Required_DataCard2_3' As typedDataCard.comboBoxOptionSetSingleEditCard":
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_travelrequired"
+                    Default: |-
+                        =//ThisItem.'Travel Required'
+                        ThisItem.TravelRequired
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_travelrequired")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    Required: =false
+                    Update: =
+                    Visible: |-
+                        =//If(Gallery1.Selected.'Travel Required'='Travel Required (LeadInformations)'.Yes,true,false)
+                        If(ThisItem.TravelRequired='TravelRequired (LeadInformations)'.Yes,true,false)
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =12
+                    ZIndex: =1
+
+                    ErrorMessage16_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =
+                        ZIndex: =3
+
+                    StarVisible16_3 As label:
+                        Align: =Align.Center
+                        Height: =
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =
+                        ZIndex: =4
+
+                    Checkbox4_18 As checkbox:
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        Default: =true
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Travel Required"
+                        Visible: |-
+                            =//If(Gallery1.Selected.'Travel Required'='Travel Required (LeadInformations)'.Yes,true,false)
+                            If(ThisItem.TravelRequired='TravelRequired (LeadInformations)'.Yes,true,false)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        ZIndex: =5
+
+                "'Communicated to Customer_DataCard2_3' As typedDataCard.comboBoxOptionSetSingleEditCard":
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_communicatedtocustomer"
+                    Default: =ThisItem.CommunicatedToCustomer
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_communicatedtocustomer")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    Required: =false
+                    Update: =
+                    Visible: |-
+                        =//If(Gallery1_1.Selected.'Communicated to Customer'='Communicated to Customer (LeadInformations)'.Yes,true,false)
+                        If(ThisItem.CommunicatedToCustomer='CommunicatedToCustomer (LeadInformations)'.Yes,true,false)
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =13
+                    ZIndex: =1
+
+                    ErrorMessage17_3 As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =
+                        ZIndex: =3
+
+                    StarVisible17_3 As label:
+                        Align: =Align.Center
+                        Height: =
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =
+                        ZIndex: =4
+
+                    Checkbox4_19 As checkbox:
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        Default: =true
+                        Font: =Font.Arial
+                        FontWeight: =FontWeight.Semibold
+                        Height: =56
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        Size: |-
+                            =//18
+                            If(Parent.Width<378,12,Parent.Width<500,14,16)
+                        Text: ="Communicated to customer"
+                        Visible: |-
+                            =//If(Gallery1.Selected.'Communicated to Customer'='Communicated to Customer (LeadInformations)'.Yes,true,false)
+                            If(ThisItem.CommunicatedToCustomer='CommunicatedToCustomer (LeadInformations)'.Yes,true,false)
+                        Width: =Parent.Width - 60
+                        X: =30
+                        ZIndex: =5
+
+            "glryImageLSS_2 As gallery.'BrowseLayout_Vertical_OneImageTwoColumnVariant_ver5.0'":
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =RGBA(39, 113, 194, 1)
+                DelayItemLoading: =true
+                FillPortions: =0
+                Height: =If(glryImageLSS_2.AllItemsCount=0,0,glryImageLSS_2.AllItemsCount=1||glryImageLSS_2.AllItemsCount=2,250,glryImageLSS_2.AllItemsCount=4,550)
+                Items: =Filter(LeadImages,LeadInformationLID.ID=VarLtdID)
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =4
+                TemplateSize: =Min(250, Self.Height - 60)
+                Width: =Parent.Width-60
+                WrapCount: =2
+                X: =40
+                Y: =SummaryForm_3.Height
+                ZIndex: =2
+
+                ImageLSS_2 As image:
+                    BorderThickness: =2
+                    Height: =If(Parent.Width>Parent.Height,Parent.TemplateHeight/1.2,Parent.TemplateHeight/1.4)
+                    Image: =ThisItem.Images
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =10
+                    PaddingLeft: =2
+                    PaddingRight: =2
+                    PaddingTop: =10
+                    RadiusBottomLeft: =8
+                    RadiusBottomRight: =8
+                    RadiusTopLeft: =8
+                    RadiusTopRight: =8
+                    Width: =Parent.TemplateWidth/1.10
+                    ZIndex: =1
+

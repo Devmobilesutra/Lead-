@@ -1,0 +1,732 @@
+SubmittedLeadScreen As screen:
+    OnVisible: |-
+        =UpdateContext({locInfoExpanded:false})
+
+    ctnMainSLS As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(219, 219, 219, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Center
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingLeft: =10
+        PaddingRight: =10
+        Width: =Parent.Width
+        ZIndex: =1
+
+        ctnHeaderSLS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/13.5
+                ///If(Parent.Height<Parent.Width,Parent.Height/6,Parent.Height/18)
+                If(Parent.Height<Parent.Width,60,80)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =Parent.Width/1.02
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width
+            X: =0.00
+            ZIndex: =1
+
+            iconBackCL_1 As icon.BackArrow:
+                Color: =RGBA(255, 0, 0, 1)
+                Height: =55
+                Icon: =Icon.BackArrow
+                OnSelect: |-
+                    =Navigate(DashboardScreen);
+                    UpdateContext({locInfoExpanded:false})
+                PaddingBottom: =5
+                PaddingLeft: =20
+                PaddingTop: =5
+                Width: =55
+                X: =18
+                Y: =11
+                ZIndex: =1
+
+            lblHeaderCL_1 As label:
+                Color: =RGBA(116, 116, 116, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                FontWeight: =FontWeight.Bold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                PaddingLeft: =20
+                PaddingRight: =5.34
+                Size: |
+                    =//21.36
+                    If(Parent.Width<500,14,Parent.Width>500,22,12)
+                Text: ="Technicians Lead Generation"
+                Width: =Parent.Width-imgSchindlerLogoCL_1.Width-iconBackCL_1.Width
+                X: =96.12
+                ZIndex: =2
+
+            imgSchindlerLogoCL_1 As image:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                Image: ='3x'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                PaddingTop: =0.00
+                Width: =Parent.Width/7.5
+                X: =0.00
+                ZIndex: =3
+
+        ctnUserNameSLS As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/14
+                If(Parent.Height<Parent.Width,Parent.Height/10,Parent.Height/16)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width-40
+            X: =21.36
+            Y: =ctnHeaderSLS.Y+ctnHeaderSLS.Height+10
+            ZIndex: =2
+
+            btnheaderCL_1 As button:
+                Align: =Align.Right
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =100
+                PaddingRight: =20
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,14,Parent.Width>500,20,18)
+                Text: ="Submitted Leads"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lblUserNameCL_1 As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingRight: =10
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,14,Parent.Width>500,20,18)
+                Text: =User().FullName
+                Width: =Parent.Width/2
+                ZIndex: =2
+
+        ctnMiddleSLS As groupContainer.manualLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =Parent.Height-ctnUserNameSLS.Height-ctnHeaderSLS.Height
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingLeft: =10
+            PaddingRight: =10
+            Width: =Parent.Width/1.02
+            X: =15
+            ZIndex: =3
+
+            "glrySubmittedLeadsSLS As gallery.'BrowseLayout_Flexible_SocialFeed_ver5.0'":
+                DelayItemLoading: =true
+                Height: =Parent.Height-ctnSearchBarSLS.Height
+                Items: |-
+                    =If(cumulatively=true, [ 
+                       Text( Year(Today())),
+                        Text( Year(Today())-1),
+                        Text( Year(Today())-2),
+                        Text( Year(Today())-3),
+                        Text( Year(Today())-4),
+                        Text(Year(Today())-5),
+                        Text( Year(Today())-6),
+                        Text(Year(Today())-7),
+                        Text(Year(Today())-8),
+                        Text(Year(Today())-9),
+                        Text(Year(Today())-10),
+                        Text(Year(Today())-11)],yearly=true,[Text( Year(Today()))])
+                        
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =4
+                TemplateSize: =Min(870, Self.Height - 40)
+                Width: =Parent.Width/1.02
+                X: =10
+                Y: =ctnSearchBarSLS.Y+ctnSearchBarSLS.Height+10
+                ZIndex: =1
+
+                Title2 As label:
+                    AutoHeight: =true
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: |-
+                        =//Self.Size * 1.8
+                        30
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Text: =ThisItem.Value
+                    Width: =Parent.Width/10
+                    X: =lblTitleYearSLS.X+lblTitleYearSLS.Width
+                    Y: =10
+                    ZIndex: =1
+
+                "glryLeadsSLS As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+                    Fill: =RGBA(237, 237, 237, 1)
+                    Height: =Parent.Height
+                    Items: |-
+                        =//Sort
+                        Search(Sort(Filter(LeadInformations,//Email=User().Email  && 
+                        Text(Year('Created On'))=Title2.Text&&LeadStatus<>"Sold"&&Email=User().Email),'Created On',SortOrder.Ascending),IntxtSearchBoxSLS.Text,"shlrf_contractnumber","shlrf_address","shlrf_buildingname")
+                    Layout: =Layout.Vertical
+                    TemplatePadding: =0
+                    TemplateSize: =210
+                    Visible: |
+                        =ThisItem.IsSelected && locInfoExpanded
+                    Width: =Parent.Width/1.03
+                    Y: =rectangleYearSLS.Height
+                    ZIndex: =2
+
+                    Separator3_1 As rectangle:
+                        BorderColor: =RGBA(149, 149, 149, 1)
+                        BorderThickness: =2
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =Parent.TemplateHeight/1.06
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        OnSelect: |-
+                            =//Navigate(ViewLeadScreen);
+                            Set(VarFormMode,Defaults(LeadInformations));
+                        PressedFill: =RGBA(255, 0, 0, 1)
+                        Width: =If(Parent.Width<378,Parent.Width/1.07,Parent.Width<500,Parent.Width/1.07,Parent.Width/1.03)
+                        X: =1
+                        Y: =10
+                        ZIndex: =1
+
+                    Title3_4 As label:
+                        FontWeight: =FontWeight.Normal
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: =ThisItem.'ContractNumber '
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =355
+                        X: =Title3_3.Width+Title3_3.X
+                        Y: =Title3_3.Y
+                        ZIndex: =2
+
+                    Subtitle3_1 As label:
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: =ThisItem.'BuildingName '
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =385
+                        X: =197
+                        Y: =Title3_5.Y
+                        ZIndex: =3
+
+                    Body1_13 As label:
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: =ThisItem.Address
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =455
+                        X: =135
+                        Y: =Body1_12.Y
+                        ZIndex: =4
+
+                    Title3_3 As label:
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: |-
+                            ="Contract Number :"
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: |-
+                            =If(Parent.Width>500,Parent.Width/4,Parent.Width>378,Parent.Width/3,Parent.Width/2)
+                            //If(Parent.Width<378,Parent.Width/3,Parent.Width<500,Parent.Width/4)
+                        X: =10
+                        Y: =lineEstimateSLS.Y+lineEstimateSLS.Height+10
+                        ZIndex: =5
+
+                    Title3_5 As label:
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: |-
+                            ="Bulding Name :"
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =Parent.Width/3
+                        X: =10
+                        Y: =Title3_3.Y+Title3_3.Height
+                        ZIndex: =6
+
+                    Body1_12 As label:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: |-
+                            ="Address :"
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =Parent.Width/4
+                        X: =10
+                        Y: =Title3_5.Y+Title3_5.Height
+                        ZIndex: =7
+
+                    Body1_15 As label:
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: =ThisItem.'ZipCode '
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =434
+                        X: =135
+                        Y: =Body1_14.Y
+                        ZIndex: =8
+
+                    Body1_14 As label:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: |-
+                            ="Pincode :"
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =Parent.Width/4
+                        X: =10
+                        Y: =Body1_12.Y+Body1_12.Height
+                        ZIndex: =9
+
+                    lblDateValueSLS As label:
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: =ThisItem.'Created On'
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =408
+                        X: =lblDateCSLS.Width
+                        Y: =lblDateCSLS.Y
+                        ZIndex: =10
+
+                    lblDateCSLS As label:
+                        FontWeight: =FontWeight.Semibold
+                        Height: =25
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,10,Parent.Width<500,12,14)
+                        Text: |-
+                            ="Date Created :"
+                        VerticalAlign: =VerticalAlign.Top
+                        Visible: =false
+                        Width: =Parent.Width/2.5
+                        X: =10
+                        Y: =Body1_14.Height+Body1_14.Y
+                        ZIndex: =11
+
+                    lblPriceSLS As label:
+                        Height: =20
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,9,Parent.Width<500,12,14)
+                        Text: |-
+                            =//"Sold Incentives $ : "&  " " & 0
+                            "Price:" & " " & 0
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width/2.55
+                        X: =If(Parent.Width<500,lblTitleTotalIncentivesSLS.X,Parent.Width/1.8)
+                        Y: =If(Parent.Width>500,lblTitleTotalIncentivesSLS.Y,lblTitleTotalIncentivesSLS.Y+lblTitleTotalIncentivesSLS.Height)
+                        ZIndex: =12
+
+                    lblTitleTotalIncentivesSLS As label:
+                        Height: =20
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,9,Parent.Width<500,12,14)
+                        Text: |
+                            =If(VarFutureIncetives = true,
+                            "Potential Future Incentives $ :" & " " & "0",
+                                      VarSoldIncetives=true,"Sold Incentives $:" & " " & "0",
+                                      VarTotalIncentives=true,"Total Incentives $:" & " "& "0")
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width/1.8
+                        X: =10
+                        Y: =lblEstimateNumberSLS.Height+lblEstimateNumberSLS.Y
+                        ZIndex: =13
+
+                    lineEstimateSLS As rectangle:
+                        BorderColor: =RGBA(116, 116, 116, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(116, 116, 116, 1)
+                        Height: =2
+                        OnSelect: =Select(Parent)
+                        Width: =Separator3_1.Width-20
+                        X: =10
+                        Y: =If(Parent.Width<500,lblPriceSLS.Height+lblPriceSLS.Y,lblTitleTotalIncentivesSLS.Height+lblTitleTotalIncentivesSLS.Y+10)
+                        ZIndex: =14
+
+                    lblEstimateNumberSLS As label:
+                        Height: =20
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,9,Parent.Width<500,12,14)
+                        Text: |-
+                            ="Estimate Number :" & " " 
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width/1.8
+                        X: =10
+                        Y: =14
+                        ZIndex: =15
+
+                    HtmlText2_3 As htmlViewer:
+                        AutoHeight: =true
+                        Height: =20
+                        HtmlText: |-
+                            ="<b>Building Name : </b>" &  ThisItem.'BuildingName '
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                        Width: =Parent.Width
+                        X: =10
+                        Y: =HtmlText2_4.Y+HtmlText2_4.Height
+                        ZIndex: =16
+
+                    HtmlText2_4 As htmlViewer:
+                        AutoHeight: =true
+                        Height: =20
+                        HtmlText: |-
+                            ="<b>Contract Number : </b>" &  ThisItem.'ContractNumber '
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                        Width: =Parent.Width
+                        X: =10
+                        Y: =lineEstimateSLS.Y+lineEstimateSLS.Height+10
+                        ZIndex: =17
+
+                    HtmlText2_5 As htmlViewer:
+                        AutoHeight: =true
+                        DisplayMode: =DisplayMode.View
+                        Height: =20
+                        HtmlText: |-
+                            ="<b>Address : </b>" & ThisItem.Address
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                        Width: =Parent.Width
+                        X: =10
+                        Y: =HtmlText2_3.Y+HtmlText2_3.Height
+                        ZIndex: =18
+
+                    HtmlText2_6 As htmlViewer:
+                        AutoHeight: =true
+                        DisplayMode: =DisplayMode.View
+                        Height: =20
+                        HtmlText: |-
+                            ="<b>Zipcode : </b>" & ThisItem.'ZipCode '
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                        Width: =Parent.Width
+                        X: =10
+                        Y: =HtmlText2_5.Y+HtmlText2_5.Height
+                        ZIndex: =19
+
+                    HtmlText2_7 As htmlViewer:
+                        AutoHeight: =true
+                        DisplayMode: =DisplayMode.View
+                        Height: =20
+                        HtmlText: |-
+                            ="<b>Date Created : </b>" & ThisItem.'Created On'
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingTop: =0
+                        Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                        Width: =Parent.Width
+                        X: =10
+                        Y: =HtmlText2_6.Y+HtmlText2_6.Height
+                        ZIndex: =20
+
+                    btnSubmittedLeadSLS As button:
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Separator3_1.Height
+                        HoverColor: =RGBA(0, 0, 0, 0)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        OnSelect: |
+                            =//Navigate(ViewLeadScreen);
+                            Set(VarFormMode,ThisItem);
+                            Set(VarLtdID,ThisItem.ID);
+                            Set(VarBackColor,true);
+                            Navigate([@ViewDetailsScreen],ScreenTransition.None);
+                            /*{LtdID:ThisItem.ID,ContractNumber:ThisItem.'ContractNumber ',BuildingName:ThisItem.'BuildingName ',Address:ThisItem.Address,Zipcode:ThisItem.'ZipCode ',UnitCount:ThisItem.NumberofUnits,UnitDescription:ThisItem.UnitDescription,Scope:ThisItem.PrimaryScopeofWorkLID,ScopeOfWork:ThisItem.SecondaryScopeofWorkLID,CustomScope:ThisItem.CustomScopeofWork,unitdown:ThisItem.IsUnitDown,AdditionalExpensesRequired:ThisItem.AdditionalExpensesRequired,CommunicatedtoCustomer:ThisItem.CommunicatedToCustomer,EstimatedHours:ThisItem.'EstimatedHours ',Material:ThisItem.Notes,travelRequired:ThisItem.TravelRequired//LeadImage:ThisItem.LeadImages
+                            }*/
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =24
+                        Text: =""
+                        Width: =Parent.Width
+                        Y: =5
+                        ZIndex: =21
+
+                lblTitleYearSLS As label:
+                    AutoHeight: =true
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: |-
+                        =//Self.Size * 1.8
+                        30
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Text: |-
+                        =//ThisItem.Value\
+                        "Year"
+                    Width: =Parent.Width/10
+                    X: =10
+                    Y: =10
+                    ZIndex: =5
+
+                lblCountTotalLeadsSLS As label:
+                    AutoHeight: =true
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: |-
+                        =//Self.Size * 1.8
+                        30
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Text: |+
+                        =CountRows(Filter
+                        (LeadInformations,Email=User().Email  && 
+                        Year('Created On')=Year(Title2.Text)))
+                        
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.Width/10
+                    X: =lblTotalLeadsSLS.Width+lblTotalLeadsSLS.X
+                    Y: =10
+                    ZIndex: =6
+
+                lblTotalLeadsSLS As label:
+                    AutoHeight: =true
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: |-
+                        =//Self.Size * 1.8
+                        30
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Text: |-
+                        =//ThisItem.Value\
+                        "Total Leads"
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.Width/6
+                    X: =Title2.Width+Title2.X
+                    Y: =10
+                    ZIndex: =7
+
+                lblCountTotalIncentivesSLS As label:
+                    AutoHeight: =true
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: |-
+                        =//Self.Size * 1.8
+                        30
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Text: |-
+                        =Sum(
+                            Filter(
+                                GCTotalIncentives,
+                                Year(Year) = Year(ThisItem.Value)),
+                            TotalIncentives
+                        )
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.Width/6
+                    X: =lblTotalIncentivesSLS.Width+lblTotalIncentivesSLS.X
+                    Y: =10
+                    ZIndex: =8
+
+                lblTotalIncentivesSLS As label:
+                    AutoHeight: =true
+                    FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                    Height: |-
+                        =//Self.Size * 1.8
+                        30
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Text: |-
+                        =//ThisItem.Value\
+                        "Total Incentives"
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.Width/5
+                    X: =lblCountTotalLeadsSLS.Width+lblCountTotalLeadsSLS.X
+                    Y: =10
+                    ZIndex: =9
+
+                rectangleYearSLS As rectangle:
+                    BorderColor: =RGBA(255, 0, 0, 1)
+                    BorderThickness: =1
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    OnSelect: =Select(Parent)
+                    Width: |-
+                        =//Parent.Width/1.02
+                        If(Parent.Width<378,Parent.Width/1.06,Parent.Width<500,Parent.Width/1.06,Parent.Width/1.03)
+                    ZIndex: =10
+
+                imgExpandSLS As image:
+                    Height: =rectangleYearSLS.Height/1.08
+                    Image: =accordianPlus
+                    OnSelect: |-
+                        =Select(Parent); UpdateContext({locInfoExpanded:true})
+                    Visible: |
+                        =!(ThisItem.IsSelected && locInfoExpanded)
+                    Width: =Parent.Width/14
+                    X: =rectangleYearSLS.Width -(1.08*Self.Width)
+                    ZIndex: =11
+
+                imgCollapseSLS As image:
+                    Height: =rectangleYearSLS.Height/1.08
+                    Image: =accordianMinus
+                    OnSelect: |-
+                        =Select(Parent); UpdateContext({locInfoExpanded:false})
+                    Visible: |
+                        =ThisItem.IsSelected && locInfoExpanded
+                    Width: =Parent.Width/14
+                    X: =rectangleYearSLS.Width -(1.08*Self.Width)
+                    ZIndex: =12
+
+            ctnSearchBarSLS As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =60
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                X: =10
+                ZIndex: =5
+
+                IntxtSearchBoxSLS As text:
+                    BorderColor: =RGBA(255, 0, 0, 1)
+                    Clear: =true
+                    Default: =""
+                    DisabledBorderColor: =RGBA(255, 0, 0, 1)
+                    HintText: ="Search Lead"
+                    HoverBorderColor: =RGBA(255, 0, 0, 1)
+                    HoverFill: =RGBA(0, 0, 0, 0)
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =Self.Width
+                    OnChange: |-
+                        =UpdateContext({locInfoExpanded:true})
+                    OnSelect: =
+                    PaddingLeft: =5
+                    RadiusBottomLeft: =1
+                    RadiusBottomRight: =1
+                    RadiusTopLeft: =1
+                    RadiusTopRight: =1
+                    Reset: =true
+                    Size: =If(Parent.Width<378,10,Parent.Width<500,11,14)
+                    Width: =(ctnSearchBarSLS.Width)/1.14
+                    ZIndex: =1
+
+                IconSearchSLS As icon.Search:
+                    BorderColor: =RGBA(255, 0, 0, 1)
+                    BorderThickness: =2
+                    Color: =RGBA(255, 0, 0, 1)
+                    Height: =40
+                    Icon: =Icon.Search
+                    OnSelect: |-
+                        =UpdateContext({locInfoExpanded:true})
+                    PaddingBottom: =5
+                    PaddingTop: =5
+                    Width: =(ctnSearchBarSLS.Width-IntxtSearchBoxSLS.Width)/2
+                    X: =468
+                    Y: =000
+                    ZIndex: =2
+

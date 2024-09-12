@@ -1,0 +1,998 @@
+EstimateScreen As screen:
+
+    ctnMainES As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(237, 237, 237, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingLeft: =10
+        PaddingRight: =10
+        Width: =Parent.Width
+        ZIndex: =1
+
+        ctnHeaderES As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/13.5
+                ///If(Parent.Height<Parent.Width,Parent.Height/6,Parent.Height/18)
+                If(Parent.Height<Parent.Width,60,80)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width
+            X: =0.00
+            ZIndex: =1
+
+            IconBackES As icon.BackArrow:
+                Color: =RGBA(255, 0, 0, 1)
+                Height: =50
+                Icon: =Icon.BackArrow
+                OnSelect: |+
+                    =Navigate(ScopeScreen);
+                    Set(VarIndicatorSS,false);
+                    
+                    
+                    
+                    
+                PaddingBottom: =5
+                PaddingLeft: =20
+                PaddingTop: =5
+                Width: =50
+                X: =18
+                Y: =11
+                ZIndex: =1
+
+            lblHeaderES As label:
+                Color: =RGBA(116, 116, 116, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                FontWeight: =FontWeight.Bold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                PaddingLeft: =20
+                PaddingRight: =5.34
+                Size: |
+                    =//21.36
+                    If(Parent.Width<500,12,Parent.Width>500,20,12)
+                Text: ="Technicians Lead Generation"
+                Width: =Parent.Width-imgSchindlerLogoES.Width-IconBackES.Width
+                X: =96.12
+                ZIndex: =2
+
+            imgSchindlerLogoES As image:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                Image: ='3x'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                PaddingTop: =0.00
+                Width: =Parent.Width/7.5
+                X: =0.00
+                ZIndex: =3
+
+        ctnUserHeaderES As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/14
+                If(Parent.Height<Parent.Width,Parent.Height/10,Parent.Height/16)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width-40
+            X: =21.36
+            Y: =ctnHeaderES.Y+ctnHeaderES.Height+10
+            ZIndex: =2
+
+            btnLeadES As button:
+                Align: =Align.Right
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =100
+                PaddingRight: =20
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                Text: ="Create Lead"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lblUsernameES As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingRight: =10
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                Text: =User().FullName
+                Width: =Parent.Width/2
+                Y: =5
+                ZIndex: =2
+
+        ctnMiddleES As groupContainer.verticalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =Parent.Height-ctnHeaderES.Height-ctnUserHeaderES.Height-40
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =Parent.Height-ctnHeaderES.Height-ctnUserHeaderES.Height
+            LayoutMinWidth: =Parent.Width-40
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            Width: =Parent.Width
+            ZIndex: =7
+
+            ctnProgressBarCreatLead_3 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                FillPortions: =0
+                Height: =130
+                LayoutMinHeight: =100
+                LayoutMinWidth: =Parent.Width/1.04
+                Width: =Parent.Width
+                X: =87
+                Y: =77
+                ZIndex: =1
+
+                IconLine1CL_3 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_16.X+Image1_16.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        If(Parent.Height<Parent.Width,(Image1_16.Height+Image1_16.Y)/1.5,(Image1_16.Height+Image1_16.Y)/3)
+                    ZIndex: =8
+
+                IconLine2CL_3 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_17.X+Image1_17.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        If(Parent.Height<Parent.Width,(Image1_16.Height+Image1_16.Y)/1.5,(Image1_16.Height+Image1_16.Y)/3)
+                    ZIndex: =9
+
+                IconLine3CL_3 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_18.X+Image1_18.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        If(Parent.Height<Parent.Width,(Image1_16.Height+Image1_16.Y)/1.5,(Image1_16.Height+Image1_16.Y)/3)
+                    ZIndex: =10
+
+                IconLine4CL_3 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_19.X+Image1_19.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        If(Parent.Height<Parent.Width,(Image1_16.Height+Image1_16.Y)/1.5,(Image1_16.Height+Image1_16.Y)/3)
+                    ZIndex: =11
+
+                lblStep1CL_3 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 1"
+                    Width: =Parent.Width/5
+                    X: |-
+                        =//If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/4)
+                        Image1_16.X-Image1_16.Width/3
+                    Y: =Image1_16.Y+Image1_16.Height+20
+                    ZIndex: =12
+
+                lblStep2CL_3 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 2"
+                    Width: =Parent.Width/5
+                    X: =Image1_17.X-Image1_17.Width/3
+                    Y: =Image1_16.Y+Image1_16.Height+20
+                    ZIndex: =13
+
+                lblStep3CL_3 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 3"
+                    Width: =Parent.Width/5
+                    X: =Image1_18.X-Image1_18.Width/3
+                    Y: =Image1_16.Y+Image1_16.Height+20
+                    ZIndex: =14
+
+                lblSteo4CL_3 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 4"
+                    Width: =Parent.Width/5
+                    X: =Image1_19.X-Image1_19.Width/3
+                    Y: =Image1_16.Y+Image1_16.Height+20
+                    ZIndex: =15
+
+                lblStep5CL_3 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 5"
+                    Width: =Parent.Width/5
+                    X: =Image1_20.X-Image1_20.Width/3
+                    Y: =Image1_16.Y+Image1_16.Height+20
+                    ZIndex: =16
+
+                Image1_16 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicator=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicator=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/6)
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =20
+
+                Image1_17 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorUS=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorUS=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine1CL_3.X+IconLine1CL_3.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =21
+
+                Image1_18 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorSS=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorSS=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine2CL_3.X+IconLine2CL_3.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =22
+
+                Image1_19 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorES=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorES=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine3CL_3.X+IconLine3CL_3.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =23
+
+                Image1_20 As image:
+                    BorderColor: =
+                    Fill: =Color.Red
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine4CL_3.X+IconLine4CL_3.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =24
+
+            ctnProgressBarES As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =136
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                Visible: =false
+                Width: =Parent.Width/1.04
+                X: =87
+                Y: =77
+                ZIndex: =2
+
+                CircleStep1ES As circle:
+                    Fill: =If(VarIndicator=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/6)
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =1
+
+                CircleStep2ES As circle:
+                    Fill: =If(VarIndicatorUS=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine1ES.X+IconLine1ES.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =2
+
+                CircleStep3ES As circle:
+                    Fill: =If(VarIndicatorSS=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine2ES.X+IconLine2ES.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =3
+
+                CircleStep4ES As circle:
+                    Fill: =If(VarIndicatorES=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine3ES.X+IconLine3ES.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =4
+
+                CircleStep5ES As circle:
+                    Fill: =Color.Red
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine4ES.X+IconLine4ES.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =5
+
+                IconTick1ES As icon.Check:
+                    Color: =If(VarIndicator=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep1ES.X+(CircleStep1ES.Width/4.2)
+                    Y: |-
+                        =//If(Parent.Width<378,Circle1.Height/2,Parent.Width<500,Circle1.Height/2,Circle1.Height/2)
+                        CircleStep1ES.Y+CircleStep1ES.Height/6
+                    ZIndex: =6
+
+                IconTick2ES As icon.Check:
+                    Color: =If(VarIndicatorUS=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep2ES.X+(CircleStep2ES.Width/4.2)
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height/6
+                    ZIndex: =7
+
+                IconTick3ES As icon.Check:
+                    Color: =If(VarIndicator=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep3ES.X+(CircleStep3ES.Width/4.2)
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height/6
+                    ZIndex: =8
+
+                IconTIck4ES As icon.Check:
+                    Color: =If(VarIndicatorES=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep4ES.X+(CircleStep4ES.Width/4.2)
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height/6
+                    ZIndex: =9
+
+                IconTick5ES As icon.Check:
+                    Color: =Color.Red
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Visible: =false
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep5ES.X+(CircleStep5ES.Width/4.2)
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height/6
+                    ZIndex: =10
+
+                IconLine1ES As icon.HorizontalLine:
+                    Color: =If(VarIndicator=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep1ES.X+CircleStep1ES.Width
+                    Y: =22
+                    ZIndex: =11
+
+                IconLine2ES As icon.HorizontalLine:
+                    Color: =If(VarIndicatorUS=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep2ES.X+CircleStep2ES.Width
+                    Y: =22
+                    ZIndex: =12
+
+                IconLine3ES As icon.HorizontalLine:
+                    Color: =If(VarIndicatorSS=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep3ES.X+CircleStep3ES.Width
+                    Y: =22
+                    ZIndex: =13
+
+                IconLine4ES As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep4ES.X+CircleStep4ES.Width
+                    Y: =22
+                    ZIndex: =14
+
+                lblStep1ES As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 1"
+                    Width: =Parent.Width/6
+                    X: |-
+                        =//If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/4)
+                        CircleStep1ES.X-CircleStep1ES.Width/3
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height+20
+                    ZIndex: =15
+
+                lblStep2ES As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 2"
+                    Width: =Parent.Width/6
+                    X: =CircleStep2ES.X-CircleStep2ES.Width/3
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height+20
+                    ZIndex: =16
+
+                lblStep3ES As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 3"
+                    Width: =Parent.Width/6
+                    X: =CircleStep3ES.X-CircleStep3ES.Width/3
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height+20
+                    ZIndex: =17
+
+                lblStep4ES As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 4"
+                    Width: =Parent.Width/6
+                    X: =CircleStep4ES.X-CircleStep4ES.Width/3
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height+20
+                    ZIndex: =18
+
+                lblStep5ES As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 5"
+                    Width: =Parent.Width/6
+                    X: =CircleStep5ES.X-CircleStep5ES.Width/4
+                    Y: =CircleStep1ES.Y+CircleStep1ES.Height+20
+                    ZIndex: =19
+
+            EstimateForm As form:
+                AcceptsFocus: =false
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DataSource: =LeadInformations
+                FillPortions: =0
+                Height: =EstimatedHours.Height+Material.Height+UnitDown.Height+AdditionalExpensesRequired.Height+TravelRequired.Height+CommunicatedtoCustomer.Height+50
+                Item: =VarFormMode
+                LayoutMinHeight: =250
+                LayoutMinWidth: =Parent.Width
+                Width: =Parent.Width/1.04
+                Y: =252
+                ZIndex: =3
+
+                EstimatedHours As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_estimatedhours"
+                    Default: =ThisItem.'EstimatedHours '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_estimatedhours")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_estimatedhours")
+                    Required: =false
+                    Update: =IntxtEstimatedHours.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                    lblEstimatedHours As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        Height: =48
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Text: ="Estimate Hours(Total Man Hours)"
+                        Width: =Parent.Width - 60
+                        X: =30
+                        ZIndex: =1
+
+                    IntxtEstimatedHours As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =lblEstimatedHours.Y + lblEstimatedHours.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessageEstimatedHours As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =IntxtEstimatedHours.Y + IntxtEstimatedHours.Height
+                        ZIndex: =3
+
+                    StarVisibleEstimatedHours As label:
+                        Align: =Align.Center
+                        Height: =lblEstimatedHours.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =lblEstimatedHours.Y
+                        ZIndex: =4
+
+                Material As typedDataCard.textualEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_material"
+                    Default: =ThisItem.Notes
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_notes")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =50
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_notes")
+                    Required: =false
+                    Update: =IntxtMaterial.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =1
+                    ZIndex: =1
+
+                    lblMaterial As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        Height: =48
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Text: ="Material , Part number and other things"
+                        Width: =Parent.Width - 60
+                        X: =30
+                        ZIndex: =1
+
+                    IntxtMaterial As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =lblMaterial.Y + lblMaterial.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessageMaterial As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =IntxtMaterial.Y + IntxtMaterial.Height
+                        ZIndex: =3
+
+                    StarVisibleMaterial As label:
+                        Align: =Align.Center
+                        Height: =lblMaterial.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =lblMaterial.Y
+                        ZIndex: =4
+
+                UnitDown As typedDataCard.comboBoxOptionSetSingleEditCard:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_checklist"
+                    Default: =ThisItem.IsUnitDown
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_isunitdown")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =30
+                    Required: =false
+                    Update: =
+                    Visible: =true
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =2
+                    ZIndex: =1
+
+                    ErrorMessageUnitDown As label:
+                        AutoHeight: =true
+                        Height: =0
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =CboxUnitDown.Y + CboxUnitDown.Height
+                        ZIndex: =3
+
+                    StarVisibleUnitDown As label:
+                        Align: =Align.Center
+                        Height: =0
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =CboxUnitDown.Y
+                        ZIndex: =4
+
+                    CboxUnitDown As checkbox:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        CheckboxSize: =50
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        Font: =Font.Arial
+                        Height: =56
+                        HoverBorderColor: =
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        PressedBorderColor: =
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Text: ="Unit Down"
+                        Width: =Parent.Width-50
+                        X: =30
+                        ZIndex: =5
+
+                AdditionalExpensesRequired As typedDataCard.comboBoxOptionSetSingleEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_additionalexpensesrequired"
+                    Default: =ThisItem.AdditionalExpensesRequired
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_additionalexpensesrequired")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =68
+                    Required: =false
+                    Update: =
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =3
+                    ZIndex: =1
+
+                    ErrorMessageAdditionalExpensesRequired As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =
+                        ZIndex: =3
+
+                    StarVisibleAdditonalExpensesRequired As label:
+                        Align: =Align.Center
+                        Height: =
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =
+                        ZIndex: =4
+
+                    CboxAdditionalExpensesRequired As checkbox:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        CheckboxSize: =50
+                        Font: =Font.Arial
+                        Height: =56
+                        HoverBorderColor: =
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        PressedBorderColor: =
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Text: ="Additional expenses required"
+                        Width: =Parent.Width-50
+                        X: =30
+                        ZIndex: =5
+
+                TravelRequired As typedDataCard.comboBoxOptionSetSingleEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_travelrequired"
+                    Default: =ThisItem.TravelRequired
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_travelrequired")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =68
+                    Required: =false
+                    Update: =
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =4
+                    ZIndex: =1
+
+                    ErrorMessageTravelRequired As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =
+                        ZIndex: =3
+
+                    StarVisibleTravelRequired As label:
+                        Align: =Align.Center
+                        Height: =
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =
+                        ZIndex: =4
+
+                    CboxTravelRequired As checkbox:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        CheckboxSize: =50
+                        Font: =Font.Arial
+                        Height: =56
+                        HoverBorderColor: =
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        PressedBorderColor: =
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Text: ="Travel Required"
+                        Width: =Parent.Width-50
+                        X: =30
+                        ZIndex: =5
+
+                CommunicatedtoCustomer As typedDataCard.comboBoxOptionSetSingleEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_communicatedtocustomer"
+                    Default: =ThisItem.CommunicatedToCustomer
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_communicatedtocustomer")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =68
+                    Required: =false
+                    Update: =
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =5
+                    ZIndex: =1
+
+                    ErrorMessageCommunicatedtoCustomer As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =
+                        ZIndex: =3
+
+                    StarVisibleCommunicatedtoCustomer As label:
+                        Align: =Align.Center
+                        Height: =
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =
+                        ZIndex: =4
+
+                    CboxCommunicatedtoCustomer As checkbox:
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                        CheckboxSize: =50
+                        Font: =Font.Arial
+                        Height: =56
+                        HoverBorderColor: =
+                        HoverColor: =RGBA(0, 0, 0, 1)
+                        PressedBorderColor: =
+                        Size: =If(Parent.Width<358,14,Parent.Width>358,16,14)
+                        Text: ="Communicated to Customer"
+                        Width: =Parent.Width-50
+                        X: =30
+                        ZIndex: =5
+
+            ctnButtonES As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =60
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =20
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =4
+
+                btnPreviousES As button:
+                    Fill: =RGBA(255, 0, 0, 1)
+                    Height: =53
+                    HoverFill: =Color.Red
+                    OnSelect: |+
+                        =Navigate(ScopeScreen);
+                        Set(VarIndicatorES,false);
+                        
+                        
+                        
+                        
+                    Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                    Text: ="Previous"
+                    Width: =Parent.Width/4
+                    X: =144
+                    Y: =790
+                    ZIndex: =1
+
+                btnNextES As button:
+                    Fill: =RGBA(255, 0, 0, 1)
+                    Height: =53
+                    HoverFill: =Color.Red
+                    OnSelect: |-
+                        =Set(VarIndicator, true );
+                        Set(VarIndicatorUS, true );
+                        Set(VarIndicatorSS, true );
+                        Set(VarIndicatorES,true);
+                        Set(VarIndicatorIS,false);
+                        Navigate(ImageUploadScreen);
+                    Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                    Text: ="Next"
+                    Width: =Parent.Width/4
+                    X: =145
+                    Y: =790
+                    ZIndex: =2
+
+            ctnSpaceES As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =20
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =20
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =5
+

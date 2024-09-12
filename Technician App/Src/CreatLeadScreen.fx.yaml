@@ -1,0 +1,682 @@
+CreatLeadScreen As screen:
+    OnVisible: |-
+        =ClearCollect(StepBar,
+        {ID:1 ,Color : Color.Red,Step: "Step 1" ,lineColor: Color.DimGrey},
+        {ID:2 ,Color : Color.Red,Step :"Step 2",line: Color.DimGrey},
+        {ID:3 ,Color : Color.Red,Step:"Step 3",line: Color.DimGrey},
+        {ID:4 ,Color : Color.Red,Step:"Step 4",line: Color.DimGrey},
+        {ID:5 ,Color : Color.Red,Step:"Step 5",line: Color.White });
+
+    ctnMainCLS As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(237, 237, 237, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =20
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingLeft: =10
+        PaddingRight: =10
+        Width: =Parent.Width
+        ZIndex: =1
+
+        ctnHeaderCL As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.Center
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/13.5
+                ///If(Parent.Height<Parent.Width,Parent.Height/6,Parent.Height/18)
+                If(Parent.Height<Parent.Width,60,80)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =Parent.Width/1.02
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width
+            X: =0.00
+            ZIndex: =1
+
+            iconBackCL As icon.BackArrow:
+                Color: =RGBA(255, 0, 0, 1)
+                Height: =50
+                Icon: =Icon.BackArrow
+                OnSelect: |-
+                    =Navigate(DashboardScreen);
+                    UpdateContext({locInfoExpanded:false})
+                PaddingBottom: =5
+                PaddingLeft: =20
+                PaddingTop: =5
+                Width: =50
+                X: =18
+                Y: =11
+                ZIndex: =1
+
+            lblHeaderCL As label:
+                Color: =RGBA(116, 116, 116, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                FontWeight: =FontWeight.Bold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                PaddingLeft: =20
+                PaddingRight: =5.34
+                Size: |-
+                    =//21.36
+                    If(Parent.Width<500,12,Parent.Width>500,20,12)
+                Text: ="Technicians Lead Generation"
+                Width: =Parent.Width-imgSchindlerLogoCL.Width-iconBackCL.Width
+                X: =96.12
+                ZIndex: =2
+
+            imgSchindlerLogoCL As image:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                Image: ='3x'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                PaddingTop: =0.00
+                Width: =Parent.Width/7.5
+                X: =0.00
+                ZIndex: =3
+
+        ctnUserHeaderCL As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/14
+                If(Parent.Height<Parent.Width,Parent.Height/10,Parent.Height/16)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width-40
+            X: =21.36
+            Y: =ctnHeaderCL.Y+ctnHeaderCL.Height+10
+            ZIndex: =2
+
+            btnheaderCL As button:
+                Align: =Align.Right
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =100
+                PaddingRight: =20
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,14,Parent.Width>500,20,18)
+                Text: ="Create Lead"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lblUserNameCL As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,14,Parent.Width>500,20,18)
+                Text: =User().FullName
+                Width: =Parent.Width/2
+                ZIndex: =2
+
+        ctnLeadCL As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =Parent.Height-ctnHeaderCL.Height-ctnUserHeaderCL.Height-40
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =Parent.Height-ctnHeaderCL.Height-ctnUserHeaderCL.Height
+            LayoutMinWidth: =Parent.Width/1.08
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            Width: =Parent.Width
+            ZIndex: =7
+
+            ctnProgressBarCreatLead As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                FillPortions: =0
+                Height: =130
+                LayoutMinHeight: =100
+                LayoutMinWidth: =Parent.Width/1.04
+                Width: =Parent.Width
+                X: =87
+                Y: =77
+                ZIndex: =2
+
+                IconLine1CL As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1.X+Image1.Width
+                    Y: =If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                    ZIndex: =8
+
+                IconLine2CL As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_1.X+Image1_1.Width
+                    Y: =If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                    ZIndex: =9
+
+                IconLine3CL As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_2.X+Image1_2.Width
+                    Y: =If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                    ZIndex: =10
+
+                IconLine4CL As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_3.X+Image1_3.Width
+                    Y: =If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                    ZIndex: =11
+
+                lblStep1CL As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 1"
+                    Width: =Parent.Width/5
+                    X: |-
+                        =//If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/4)
+                        Image1.X-Image1.Width/3
+                    Y: =Image1.Y+Image1.Height+20
+                    ZIndex: =12
+
+                lblStep2CL As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 2"
+                    Width: =Parent.Width/5
+                    X: =Image1_1.X-Image1_1.Width/3
+                    Y: =Image1.Y+Image1.Height+20
+                    ZIndex: =13
+
+                lblStep3CL As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 3"
+                    Width: =Parent.Width/5
+                    X: =Image1_2.X-Image1_2.Width/3
+                    Y: =Image1.Y+Image1.Height+20
+                    ZIndex: =14
+
+                lblSteo4CL As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 4"
+                    Width: =Parent.Width/5
+                    X: =Image1_3.X-Image1_3.Width/3
+                    Y: =Image1.Y+Image1.Height+20
+                    ZIndex: =15
+
+                lblStep5CL As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 5"
+                    Width: =Parent.Width/5
+                    X: =Image1_4.X-Image1_4.Width/3
+                    Y: =Image1.Y+Image1.Height+20
+                    ZIndex: =16
+
+                Image1 As image:
+                    Fill: =If(VarIndicator=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicator=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/6)
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =20
+
+                Image1_1 As image:
+                    Fill: =Color.Red
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine1CL.X+IconLine1CL.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =21
+
+                Image1_2 As image:
+                    Fill: =Color.Red
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine2CL.X+IconLine2CL.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =22
+
+                Image1_3 As image:
+                    Fill: =Color.Red
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine3CL.X+IconLine3CL.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =23
+
+                Image1_4 As image:
+                    Fill: =Color.Red
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine4CL.X+IconLine4CL.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =24
+
+            BuildingInfoForm As form:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DataSource: =LeadInformations
+                FillPortions: =0
+                Height: =BuildingName.Height+Address.Height+ContractNumber.Height+ZipCode.Height+20
+                Item: =VarFormMode
+                LayoutMinHeight: =250
+                LayoutMinWidth: =400
+                Width: =Parent.Width/1.04
+                Y: =143
+                ZIndex: =3
+
+                ContractNumber As typedDataCard.textualEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_contractnumber"
+                    Default: =ThisItem.'ContractNumber '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_contractnumber")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =100
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength, "shlrf_contractnumber")
+                    Required: =false
+                    Update: =IntxtContractNumber.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                    lblContractNumber As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        Height: =48
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Text: ="Contract Number"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    IntxtContractNumber As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Color.Black, Color.Red)
+                        Color: =Color.Black
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =lblContractNumber.Y + lblContractNumber.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessageContractNumber As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =IntxtContractNumber.Y + IntxtContractNumber.Height
+                        ZIndex: =3
+
+                    StarVisibleContractNumber As label:
+                        Align: =Align.Center
+                        Height: =lblContractNumber.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =lblContractNumber.Y
+                        ZIndex: =4
+
+                ZipCode As typedDataCard.textualEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_pincode"
+                    Default: =ThisItem.'ZipCode '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_zipcode")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =100
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength, "shlrf_zipcode")
+                    Required: =false
+                    Update: =IntxtZipCode.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =2
+                    ZIndex: =1
+
+                    lblZipcode As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        Height: =48
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    IntxtZipCode As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Color.Black, Color.Red)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =lblZipcode.Y + lblZipcode.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessageZipcode As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =IntxtZipCode.Y + IntxtZipCode.Height
+                        ZIndex: =3
+
+                    StarVisibleZipcode As label:
+                        Align: =Align.Center
+                        Height: =lblZipcode.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =lblZipcode.Y
+                        ZIndex: =4
+
+                BuildingName As typedDataCard.textualEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_name"
+                    Default: =ThisItem.'BuildingName '
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_buildingname")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =100
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_buildingname")
+                    Required: =false
+                    Update: =IntxtBuildingName.Text
+                    Width: |
+                        =Parent.Width
+                    X: =0
+                    Y: =1
+                    ZIndex: =2
+
+                    lblBuildingName As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        Height: =48
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Text: |-
+                            =//Parent.DisplayName
+                            "Building Name"
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    IntxtBuildingName As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Color.Black, Color.Red)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =50
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =lblBuildingName.Y + lblBuildingName.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessageBuilldingName As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =IntxtBuildingName.Y + IntxtBuildingName.Height
+                        ZIndex: =3
+
+                    StarVisibleBuildingName As label:
+                        Align: =Align.Center
+                        Height: =lblBuildingName.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =lblBuildingName.Y
+                        ZIndex: =4
+
+                Address As typedDataCard.textualEditCard:
+                    BorderStyle: =BorderStyle.Solid
+                    DataField: ="crd59_address"
+                    Default: =ThisItem.Address
+                    DisplayMode: =Parent.DisplayMode
+                    DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_address")
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =100
+                    MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_address")
+                    Required: =false
+                    Update: =IntxtAddress.Text
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =3
+                    ZIndex: =2
+
+                    lblAddress As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 0, 0, 1)
+                        Font: =Font.Arial
+                        Height: =48
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Text: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        Wrap: =false
+                        X: =30
+                        Y: =10
+                        ZIndex: =1
+
+                    IntxtAddress As text:
+                        BorderColor: =If(IsBlank(Parent.Error), Color.Black, Color.Red)
+                        Default: =Parent.Default
+                        DelayOutput: =true
+                        DisplayMode: =Parent.DisplayMode
+                        Font: =Font.Arial
+                        Height: =80
+                        HoverBorderColor: =RGBA(0, 0, 0, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        MaxLength: =Parent.MaxLength
+                        Mode: =TextMode.MultiLine
+                        PaddingLeft: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Tooltip: =Parent.DisplayName
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =lblAddress.Y + lblAddress.Height + 5
+                        ZIndex: =2
+
+                    ErrorMessageAddress As label:
+                        AutoHeight: =true
+                        Height: =10
+                        Live: =Live.Assertive
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =24
+                        Text: =Parent.Error
+                        Visible: =Parent.DisplayMode=DisplayMode.Edit
+                        Width: =Parent.Width - 60
+                        X: =30
+                        Y: =IntxtAddress.Y + IntxtAddress.Height
+                        ZIndex: =3
+
+                    StarVisibleAddress As label:
+                        Align: =Align.Center
+                        Height: =lblAddress.Height
+                        Size: =21
+                        Text: ="*"
+                        Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                        Width: =30
+                        Wrap: =false
+                        Y: =lblAddress.Y
+                        ZIndex: =4
+
+            btnNextCL As button:
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                HoverFill: =Color.Red
+                OnSelect: |-
+                    =Set(VarIndicatorUS,false);
+                    Set(VarIndicator,true);
+                    Navigate(UnitScreen);
+                Size: =If(Parent.Width<358,12,Parent.Width>358,16,14)
+                Text: ="Next"
+                Width: =Parent.Width/6
+                X: =306
+                Y: =785
+                ZIndex: =4
+
+            ctnForSpaceCL As groupContainer.verticalAutoLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =20
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =5
+

@@ -1,0 +1,1386 @@
+LeadSummaryScreen As screen:
+
+    ctnMainLSS As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(237, 237, 237, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingLeft: =10
+        PaddingRight: =10
+        Width: =Parent.Width
+        ZIndex: =1
+
+        ctnHeaderLSS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/13.5
+                ///If(Parent.Height<Parent.Width,Parent.Height/6,Parent.Height/18)
+                If(Parent.Height<Parent.Width,60,80)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width
+            X: =0.00
+            ZIndex: =1
+
+            IconBackLSS As icon.BackArrow:
+                Color: =RGBA(255, 0, 0, 1)
+                Height: =55
+                Icon: =Icon.BackArrow
+                OnSelect: |-
+                    =Navigate(DashboardScreen);
+                    UpdateContext({locInfoExpanded:false})
+                PaddingBottom: =5
+                PaddingLeft: =20
+                PaddingTop: =5
+                Width: =55
+                X: =18
+                Y: =11
+                ZIndex: =1
+
+            lblHeaderLSS As label:
+                Color: =RGBA(116, 116, 116, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                FontWeight: =FontWeight.Bold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                PaddingLeft: =20
+                PaddingRight: =5.34
+                Size: |
+                    =//21.36
+                    If(Parent.Width<500,12,Parent.Width>500,20,12)
+                Text: ="Technicians Lead Generation"
+                Width: =Parent.Width-imgSchindlerLogoLSS.Width-IconBackLSS.Width
+                X: =96.12
+                ZIndex: =2
+
+            imgSchindlerLogoLSS As image:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                Image: ='3x'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                PaddingTop: =0.00
+                Width: =Parent.Width/7.5
+                X: =0.00
+                ZIndex: =3
+
+        ctnUserNameLSS As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/14
+                If(Parent.Height<Parent.Width,Parent.Height/10,Parent.Height/16)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width-40
+            X: =21.36
+            Y: =ctnHeaderLSS.Y+ctnHeaderLSS.Height+10
+            ZIndex: =2
+
+            btnUserNameLSS As button:
+                Align: =Align.Right
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =100
+                PaddingRight: =20
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                Text: ="Create Lead"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lblUserNameLSS As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingRight: =10
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                Text: =User().FullName
+                Width: =Parent.Width/2
+                Y: =5
+                ZIndex: =2
+
+        ctnMiddleLSS As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =Parent.Height-ctnHeaderLSS.Height-ctnUserNameLSS.Height-40
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =Parent.Height-ctnHeaderLSS.Height-ctnUserNameLSS.Height
+            LayoutMinWidth: =Parent.Width-40
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingTop: =10
+            ZIndex: =7
+
+            ctnSummaryLSS As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =SummaryForm.Height+glryImageLSS.Height
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =20
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingTop: =10
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =2
+
+                SummaryForm As form:
+                    DataSource: =LeadInformations
+                    FillPortions: =0
+                    Height: =ContractNumberLSS.Height+BuildingNameLSS.Height+ZipCodeLSS.Height+AddressLSS.Height+UnitCountLSS.Height+UnitDescriptionLSS.Height+ScopeLSS.Height+ScopeOfWorkLSS.Height+ManuallyScopeOfWorkLSS.Height+EstimatedHoursLSS.Height+NotesLSS.Height+UnitDownLSS.Height+AdditionalExpensesRequiredLSS.Height+TravelRequiredLSS.Height+CommunicatedtoCustomerLSS.Height+30
+                    Item: =VarFormMode
+                    LayoutMinHeight: =250
+                    LayoutMinWidth: =Parent.Width
+                    NumberOfColumns: =1
+                    Width: =Parent.Width/1.04
+                    Y: =4
+                    ZIndex: =1
+
+                    ContractNumberLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_contractnumber"
+                        Default: =ThisItem.'ContractNumber '
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_contractnumber")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_contractnumber")
+                        Required: =false
+                        Update: =IntxtContractNumerLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                        lblContractNumberLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =48
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Contract Number"
+                            Width: =Parent.Width-60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtContractNumerLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: |-
+                                =//Parent.Default
+                                IntxtContractNumber.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width-60
+                            X: =30
+                            Y: =lblContractNumberLSS.Y + lblContractNumberLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageCNLSS As label:
+                            AutoHeight: =true
+                            Height: =0
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width-60
+                            X: =30
+                            Y: =IntxtContractNumerLSS.Y + IntxtContractNumerLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleCNLSS As label:
+                            Align: =Align.Center
+                            Height: =lblContractNumberLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblContractNumberLSS.Y
+                            ZIndex: =4
+
+                    BuildingNameLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_buildingname"
+                        Default: =ThisItem.'BuildingName '
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_buildingname")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_buildingname")
+                        Required: =false
+                        Update: =IntxtBuildingNameLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =1
+                        ZIndex: =1
+
+                        lblBuildingNameLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =30
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Building Name"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtBuildingNameLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtBuildingName.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            Mode: =TextMode.MultiLine
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblBuildingNameLSS.Y + lblBuildingNameLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageBNLSS As label:
+                            AutoHeight: =true
+                            Height: =0
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtBuildingNameLSS.Y + IntxtBuildingNameLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleBNLSS As label:
+                            Align: =Align.Center
+                            Height: =lblBuildingNameLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblBuildingNameLSS.Y
+                            ZIndex: =4
+
+                    ZipCodeLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_pincode"
+                        Default: =ThisItem.'ZipCode '
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_zipcode")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_zipcode")
+                        Required: =false
+                        Update: =IntxtZipcodeLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =2
+                        ZIndex: =1
+
+                        lblZipcodeLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Height: =32
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtZipcodeLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtZipCode.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblZipcodeLSS.Y + lblZipcodeLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageZipcodeLSS As label:
+                            AutoHeight: =true
+                            Height: =0
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtZipcodeLSS.Y + IntxtZipcodeLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleZipcodeLSS As label:
+                            Align: =Align.Center
+                            Height: =lblZipcodeLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblZipcodeLSS.Y
+                            ZIndex: =4
+
+                    AddressLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_address"
+                        Default: =ThisItem.Address
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_address")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_address")
+                        Required: =false
+                        Update: =IntxtAddressLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =3
+                        ZIndex: =1
+
+                        lblAddressLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =48
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtAddressLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtAddress.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblAddressLSS.Y + lblAddressLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageAddressLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtAddressLSS.Y + IntxtAddressLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleAddressLSS As label:
+                            Align: =Align.Center
+                            Height: =lblAddressLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblAddressLSS.Y
+                            ZIndex: =4
+
+                    UnitCountLSS As typedDataCard.numberEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_unitcount"
+                        Default: =ThisItem.NumberofUnits
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_numberofunits")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =Value(IntxtUnitCountLSS.Text)
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =4
+                        ZIndex: =1
+
+                        lblUnitCountLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =48
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="No of Units"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtUnitCountLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtUnitCount.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Format: =TextFormat.Number
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblUnitCountLSS.Y + lblUnitCountLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageUnitCountLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtUnitCountLSS.Y + IntxtUnitCountLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleUnitCountLSS As label:
+                            Align: =Align.Center
+                            Height: =lblUnitCountLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblUnitCountLSS.Y
+                            ZIndex: =4
+
+                    UnitDescriptionLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_unitdescription"
+                        Default: =ThisItem.UnitDescription
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_unitdescription")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_unitdescription")
+                        Required: =false
+                        Update: =IntxtUnitDescriptionLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =5
+                        ZIndex: =1
+
+                        lblUnitDescriptionLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =35
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Unit Description"
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtUnitDescriptionLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtUnitDescription.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =70
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblUnitDescriptionLSS.Y + lblUnitDescriptionLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageUnitDescriptionLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtUnitDescriptionLSS.Y + IntxtUnitDescriptionLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleUnitDescriptionLSS As label:
+                            Align: =Align.Center
+                            Height: =lblUnitDescriptionLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblUnitDescriptionLSS.Y
+                            ZIndex: =4
+
+                    ScopeLSS As typedDataCard.comboBoxEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_Scope"
+                        Default: =intxtScope.Selected
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_PrimaryScopeofWorkLID")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =IntxtScopeLSS.Selected
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =6
+                        ZIndex: =1
+
+                        lblScopeLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =48
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Scope"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtScopeLSS As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =RGBA(0, 0, 0, 1)
+                            DefaultSelectedItems: =Parent.Default
+                            DisplayFields: =["shlrf_primaryscopeofworkname"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            IsSearchable: =false
+                            Items: =' PrimaryScopeofWorks'
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            PressedFill: =RGBA(0, 0, 0, 1)
+                            SearchFields: =["shlrf_primaryscopeofworkname"]
+                            SearchItems: =[]
+                            SelectionFill: =RGBA(0, 0, 0, 1)
+                            SelectMultiple: =false
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblScopeLSS.Y + lblScopeLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageScpeLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtScopeLSS.Y + IntxtScopeLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleScopeLSS As label:
+                            Align: =Align.Center
+                            Height: =lblScopeLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblScopeLSS.Y
+                            ZIndex: =4
+
+                    ScopeOfWorkLSS As typedDataCard.comboBoxEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_ScopeOfWorkLID"
+                        Default: =ThisItem.PrimaryScopeofWorkLID
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_SecondaryScopeofWorkLID")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =IntxtScopeofWorkLSS.Selected
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =7
+                        ZIndex: =1
+
+                        lblScopeofWorkLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Scope of Work"
+                            Width: =Parent.Width - 60
+                            Wrap: =false
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtScopeofWorkLSS As combobox:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            ChevronBackground: =RGBA(0, 0, 0, 1)
+                            Default: =IntxtScopeofwork.Selected
+                            DefaultSelectedItems: =IntxtScopeofwork.SelectedItems
+                            DisplayFields: =["shlrf_secondaryscopeofworkname"]
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            IsSearchable: =false
+                            Items: |-
+                                =//Choices([@LeadInformations].ScopeOfWorkLID)
+                                Filter(SecondaryScopeofWorks,PrimaryScopeofWorkLID.'PrimaryScopeofWorkName '=intxtScope.Selected.'PrimaryScopeofWorkName ')
+                            PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                            SearchFields: =["shlrf_secondaryscopeofworkname"]
+                            SearchItems: =[]
+                            SelectionFill: =RGBA(0, 0, 0, 1)
+                            SelectMultiple: =false
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblScopeofWorkLSS.Y + lblScopeofWorkLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageScopeofWorkLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtScopeofWorkLSS.Y + IntxtScopeofWorkLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleScopeofWorkLSS As label:
+                            Align: =Align.Center
+                            Height: =lblScopeofWorkLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblScopeofWorkLSS.Y
+                            ZIndex: =4
+
+                    ManuallyScopeOfWorkLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_manuallyscopeofwork"
+                        Default: =ThisItem.CustomScopeofWork
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_customscopeofwork")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_customscopeofwork")
+                        Required: =false
+                        Update: =IntxtManuallyScopeofWorkLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =8
+                        ZIndex: =1
+
+                        lblManuallyScopeofWorkLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Scope of Work (Manually Entered)"
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtManuallyScopeofWorkLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtManuallyScopeofwork.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblManuallyScopeofWorkLSS.Y + lblManuallyScopeofWorkLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageManuallyScopeofWorkLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtManuallyScopeofWorkLSS.Y + IntxtManuallyScopeofWorkLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleManuallyScopeofWorkLSS As label:
+                            Align: =Align.Center
+                            Height: =lblManuallyScopeofWorkLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblManuallyScopeofWorkLSS.Y
+                            ZIndex: =4
+
+                    EstimatedHoursLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_estimatedhours"
+                        Default: =ThisItem.'EstimatedHours '
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_estimatedhours")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_estimatedhours")
+                        Required: =false
+                        Update: =IntxtEstimatedHoursLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =9
+                        ZIndex: =1
+
+                        lblEstimatedHoursLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Font: =Font.Arial
+                            Height: =48
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Estimated Hours (Total Man Hours)"
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtEstimatedHoursLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtEstimatedHours.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =Font.Arial
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblEstimatedHoursLSS.Y + lblEstimatedHoursLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageEstimatedHoursLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtEstimatedHoursLSS.Y + IntxtEstimatedHoursLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleEstimatedHoursLSS As label:
+                            Align: =Align.Center
+                            Height: =lblEstimatedHoursLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblEstimatedHoursLSS.Y
+                            ZIndex: =4
+
+                    NotesLSS As typedDataCard.textualEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_material"
+                        Default: =ThisItem.Notes
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_notes")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        MaxLength: =DataSourceInfo([@LeadInformations], DataSourceInfo.MaxLength,"shlrf_notes")
+                        Required: =false
+                        Update: =IntxtNotesLSS.Text
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =10
+                        ZIndex: =1
+
+                        lblNotesLSS As label:
+                            AutoHeight: =true
+                            Color: =RGBA(0, 0, 0, 1)
+                            Height: =48
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Material, Part Number and other things"
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =10
+                            ZIndex: =1
+
+                        IntxtNotesLSS As text:
+                            BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                            Default: =IntxtMaterial.Text
+                            DelayOutput: =true
+                            DisplayMode: =Parent.DisplayMode
+                            Height: =50
+                            HoverBorderColor: =RGBA(0, 0, 0, 1)
+                            HoverFill: =RGBA(0, 0, 0, 0)
+                            MaxLength: =Parent.MaxLength
+                            PaddingLeft: =5
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Tooltip: =Parent.DisplayName
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =lblNotesLSS.Y + lblNotesLSS.Height + 5
+                            ZIndex: =2
+
+                        ErrorMessageNotesLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =IntxtNotesLSS.Y + IntxtNotesLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleNotesLSS As label:
+                            Align: =Align.Center
+                            Height: =lblNotesLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =lblNotesLSS.Y
+                            ZIndex: =4
+
+                    UnitDownLSS As typedDataCard.comboBoxOptionSetSingleEditCard:
+                        BorderColor: =RGBA(0, 0, 0, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_checklist"
+                        Default: =ThisItem.IsUnitDown
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_isunitdown")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =60
+                        Required: =false
+                        Update: =UnitDownLSS.Default
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =11
+                        ZIndex: =1
+
+                        ErrorMessageUDLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =CboxUDLSS.Y + CboxUDLSS.Height
+                            ZIndex: =3
+
+                        StarVisibleUDLSS As label:
+                            Align: =Align.Center
+                            Height: =CboxUDLSS.Height
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =CboxUDLSS.Y
+                            ZIndex: =4
+
+                        CboxUDLSS As checkbox:
+                            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                            CheckboxSize: =50
+                            Default: =CboxUnitDown.Value
+                            Font: =Font.Arial
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Unit Down"
+                            Width: =Parent.Width-60
+                            X: =40
+                            ZIndex: =5
+
+                    AdditionalExpensesRequiredLSS As typedDataCard.comboBoxOptionSetSingleEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_additionalexpensesrequired"
+                        Default: =ThisItem.AdditionalExpensesRequired
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_additionalexpensesrequired")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =61
+                        Required: =false
+                        Update: =AdditionalExpensesRequiredLSS.Default
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =12
+                        ZIndex: =1
+
+                        ErrorMessageAELSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =
+                            ZIndex: =3
+
+                        StarVisibleAELSS As label:
+                            Align: =Align.Center
+                            Height: =
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =
+                            ZIndex: =4
+
+                        cboxAELSS As checkbox:
+                            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                            CheckboxSize: =50
+                            Default: =CboxAdditionalExpensesRequired.Value
+                            Font: =Font.Arial
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Additional Expenses Required"
+                            Width: =Parent.Width-60
+                            X: =40
+                            ZIndex: =5
+
+                    TravelRequiredLSS As typedDataCard.comboBoxOptionSetSingleEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_travelrequired"
+                        Default: =ThisItem.TravelRequired
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_travelrequired")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =TravelRequiredLSS.Default
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =13
+                        ZIndex: =1
+
+                        ErrorMessageTravelRequiredLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =
+                            ZIndex: =3
+
+                        StarVisibleTravelRequiredLSS As label:
+                            Align: =Align.Center
+                            Height: =
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =
+                            ZIndex: =4
+
+                        cboxTravelRequiredLSS As checkbox:
+                            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                            CheckboxSize: =50
+                            Default: =CboxTravelRequired.Value
+                            Font: =Font.Arial
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Travel Required"
+                            Width: =Parent.Width-60
+                            X: =40
+                            ZIndex: =5
+
+                    CommunicatedtoCustomerLSS As typedDataCard.comboBoxOptionSetSingleEditCard:
+                        BorderStyle: =BorderStyle.Solid
+                        DataField: ="crd59_communicatedtocustomer"
+                        Default: =ThisItem.CommunicatedToCustomer
+                        DisplayMode: =Parent.DisplayMode
+                        DisplayName: =DataSourceInfo([@LeadInformations],DataSourceInfo.DisplayName,"shlrf_communicatedtocustomer")
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =50
+                        Required: =false
+                        Update: =CommunicatedtoCustomerLSS.Default
+                        Width: =Parent.Width
+                        X: =0
+                        Y: =14
+                        ZIndex: =1
+
+                        ErrorMessageCCLSS As label:
+                            AutoHeight: =true
+                            Height: =10
+                            Live: =Live.Assertive
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            Size: =24
+                            Text: =Parent.Error
+                            Visible: =Parent.DisplayMode=DisplayMode.Edit
+                            Width: =Parent.Width - 60
+                            X: =30
+                            Y: =
+                            ZIndex: =3
+
+                        StarVisibleCCLSS As label:
+                            Align: =Align.Center
+                            Height: =
+                            Size: =21
+                            Text: ="*"
+                            Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                            Width: =30
+                            Wrap: =false
+                            Y: =
+                            ZIndex: =4
+
+                        CboxCCLSS As checkbox:
+                            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+                            CheckboxSize: =50
+                            Default: =CboxCommunicatedtoCustomer.Value
+                            Font: =Font.Arial
+                            HoverColor: =RGBA(0, 0, 0, 1)
+                            Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                            Text: ="Communicated to customer"
+                            Width: =Parent.Width-60
+                            X: =40
+                            ZIndex: =5
+
+                "glryImageLSS As gallery.'BrowseLayout_Vertical_OneImageTwoColumnVariant_ver5.0'":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    BorderColor: =RGBA(39, 113, 194, 1)
+                    DelayItemLoading: =true
+                    FillPortions: =0
+                    Height: =If(glryImageLSS.AllItemsCount=0,0,glryImageLSS.AllItemsCount=1||glryImageLSS.AllItemsCount=2,250,glryImageLSS.AllItemsCount=4,550)
+                    Items: |
+                        =LeadImagesCollection
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =4
+                    TemplateSize: =Min(250, Self.Height - 60)
+                    Width: =Parent.Width/1.08
+                    WrapCount: =2
+                    ZIndex: =2
+
+                    ImageLSS As image:
+                        BorderThickness: =2
+                        Height: =If(Parent.Width>Parent.Height,Parent.TemplateHeight/1.2,Parent.TemplateHeight/1.4)
+                        Image: =ThisItem.Image
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =10
+                        PaddingLeft: =2
+                        PaddingRight: =2
+                        PaddingTop: =10
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =Parent.TemplateWidth/1.10
+                        ZIndex: =1
+
+                    IconImageLSS As icon.Cancel:
+                        Color: =RGBA(255, 0, 0, 1)
+                        Height: =30
+                        Icon: =Icon.Cancel
+                        OnSelect: =Remove(LeadImagesCollection,ThisItem);
+                        Width: =30
+                        X: =ImageLSS.Width-Self.Width
+                        Y: =ImageLSS.Y+10
+                        ZIndex: =2
+
+            ctnButtonSummaryScreen As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =60
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =20
+                LayoutJustifyContent: =LayoutJustifyContent.Center
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =3
+
+                btnPreviousLSS As button:
+                    Fill: =RGBA(255, 0, 0, 1)
+                    Height: =50
+                    HoverFill: =Color.Red
+                    OnSelect: |+
+                        =Navigate(ImageUploadScreen);
+                        //Set(VarIndicatorIS,false);
+                        
+                        
+                        
+                        
+                    Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                    Text: ="Previous"
+                    Width: =Parent.Width/4
+                    X: =144
+                    Y: =790
+                    ZIndex: =1
+
+                btnSubmitLSS As button:
+                    Fill: =RGBA(255, 0, 0, 1)
+                    Height: =50
+                    HoverFill: =Color.Red
+                    OnSelect: |
+                        =Set(VarLeadInformationID,GUID());
+                        Patch(
+                            LeadInformations,
+                            Defaults(LeadInformations),
+                            {
+                                ID: VarLeadInformationID,
+                                'ContractNumber ': IntxtContractNumerLSS.Text,
+                                'BuildingName ': IntxtBuildingNameLSS.Text,
+                                'ZipCode ': IntxtZipcodeLSS.Text,
+                                Address: IntxtAddressLSS.Text,
+                                NumberofUnits: Value(IntxtUnitCountLSS.Text),
+                                UnitDescription: IntxtUnitDescriptionLSS.Text,
+                                PrimaryScopeofWorkLID: LookUp(
+                                    ' PrimaryScopeofWorks',
+                                    ID = IntxtScopeLSS.Selected.ID
+                                ),
+                                SecondaryScopeofWorkLID: LookUp(
+                                    SecondaryScopeofWorks,
+                                    ID = IntxtScopeofWorkLSS.Selected.ID
+                                ),
+                                CustomScopeofWork: IntxtManuallyScopeofWorkLSS.Text,
+                                'EstimatedHours ': IntxtEstimatedHoursLSS.Text,
+                                Notes: IntxtNotesLSS.Text,
+                                //Lead_Image:Image2.Image,
+                                IsUnitDown: CboxUDLSS.Value,
+                                AdditionalExpensesRequired: cboxAELSS.Value,
+                                TravelRequired: cboxTravelRequiredLSS.Value,
+                                CommunicatedToCustomer: CboxCCLSS.Value,
+                                LeadStatus: "Submitted",
+                                Email: User().Email,
+                                MechanicName: User().FullName
+                            }
+                        );
+                        ForAll(
+                            glryImageLSS.AllItems As i,
+                            Patch(
+                                LeadImages,
+                                {
+                                    ID:GUID(),
+                                    Images:i.Image,
+                                    LeadInformationLID:LookUp(LeadInformations,ID=Text(VarLeadInformationID))
+                        
+                                }
+                            )
+                        );
+                        Notify(
+                            "Form has been submitted succuessfully.",
+                            NotificationType.Success
+                        );
+                        Navigate(DashboardScreen);
+                    Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                    Text: ="Submit"
+                    Width: =Parent.Width/4
+                    X: =145
+                    Y: =790
+                    ZIndex: =2
+

@@ -1,0 +1,716 @@
+ImageUploadScreen As screen:
+    OnVisible: =
+
+    ctnMainIS As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(237, 237, 237, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =10
+        LayoutMode: =LayoutMode.Auto
+        LayoutOverflowY: =LayoutOverflow.Scroll
+        PaddingLeft: =10
+        PaddingRight: =10
+        Width: =Parent.Width
+        ZIndex: =1
+
+        ctnHeaderIS As groupContainer.horizontalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/13.5
+                ///If(Parent.Height<Parent.Width,Parent.Height/6,Parent.Height/18)
+                If(Parent.Height<Parent.Width,60,80)
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width
+            X: =0.00
+            ZIndex: =1
+
+            IconBackIS As icon.BackArrow:
+                Color: =RGBA(255, 0, 0, 1)
+                Height: =50
+                Icon: =Icon.BackArrow
+                OnSelect: |-
+                    =Navigate(EstimateScreen);
+                    Set(VarIndicatorES,false);
+                PaddingBottom: =5
+                PaddingLeft: =20
+                PaddingTop: =5
+                Width: =50
+                X: =18
+                Y: =11
+                ZIndex: =1
+
+            lblUserIS As label:
+                Color: =RGBA(116, 116, 116, 1)
+                DisplayMode: =DisplayMode.View
+                Font: =Font.Arial
+                FontWeight: =FontWeight.Bold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                PaddingLeft: =20
+                PaddingRight: =5.34
+                Size: |
+                    =//21.36
+                    If(Parent.Width<500,12,Parent.Width>500,20,12)
+                Text: ="Technicians Lead Generation"
+                Width: =Parent.Width-imgSchindlerLogoIS.Width-IconBackIS.Width
+                X: =96.12
+                ZIndex: =2
+
+            imgSchindlerLogoIS As image:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                Image: ='3x'
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                PaddingTop: =0.00
+                Width: =Parent.Width/7.5
+                X: =0.00
+                ZIndex: =3
+
+        ctnUsernameIS As groupContainer.manualLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            FillPortions: =0
+            Height: |-
+                =//Parent.Height/14
+                If(Parent.Height<Parent.Width,Parent.Height/10,Parent.Height/16)
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            PaddingRight: =0.00
+            PaddingTop: =0.00
+            Width: =Parent.Width-40
+            X: =21.36
+            Y: =ctnHeaderIS.Y+ctnHeaderIS.Height+10
+            ZIndex: =2
+
+            btnLeadIS As button:
+                Align: =Align.Right
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 0, 0, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingLeft: =100
+                PaddingRight: =20
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                Text: ="Create Lead"
+                Width: =Parent.Width
+                ZIndex: =1
+
+            lblUserNameIS As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Font: =Font.Arial
+                Height: =Parent.Height
+                PaddingBottom: =0
+                PaddingRight: =10
+                PaddingTop: =0
+                Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                Text: =User().FullName
+                Width: =Parent.Width/2
+                Y: =5
+                ZIndex: =2
+
+        ctnMiddleIS As groupContainer.verticalAutoLayoutContainer:
+            AlignInContainer: =AlignInContainer.SetByContainer
+            Fill: =RGBA(255, 255, 255, 1)
+            FillPortions: =0
+            Height: =Parent.Height-ctnHeaderIS.Height-ctnUsernameIS.Height-40
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =Parent.Height-ctnHeaderIS.Height-ctnUsernameIS.Height
+            LayoutMinWidth: =Parent.Width-40
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            ZIndex: =7
+
+            ctnProgressBarCreatLead_4 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
+                FillPortions: =0
+                Height: =130
+                LayoutMinHeight: =100
+                LayoutMinWidth: =Parent.Width/1.04
+                Width: =Parent.Width
+                X: =87
+                Y: =77
+                ZIndex: =1
+
+                IconLine1CL_4 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_21.X+Image1_21.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        
+                        If(Parent.Height<Parent.Width,(Image1_21.Height+Image1_21.Y)/1.5,(Image1_21.Height+Image1_21.Y)/3)
+                    ZIndex: =8
+
+                IconLine2CL_4 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_22.X+Image1_22.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        
+                        If(Parent.Height<Parent.Width,(Image1_21.Height+Image1_21.Y)/1.5,(Image1_21.Height+Image1_21.Y)/3)
+                    ZIndex: =9
+
+                IconLine3CL_4 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_23.X+Image1_23.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        
+                        If(Parent.Height<Parent.Width,(Image1_21.Height+Image1_21.Y)/1.5,(Image1_21.Height+Image1_21.Y)/3)
+                    ZIndex: =10
+
+                IconLine4CL_4 As icon.HorizontalLine:
+                    Color: =Color.DarkGray
+                    Height: =Parent.Height/13
+                    Icon: =Icon.HorizontalLine
+                    Width: |-
+                        =//If(Parent.Width<440,40,Parent.Width<500,55,70)
+                        If(Parent.Width<378,Parent.Width/10,Parent.Width<500,Parent.Width/12,Parent.Width/14)
+                    X: =Image1_24.X+Image1_24.Width
+                    Y: |-
+                        =//If(Parent.Height>Parent.Width,(Parent.Height-Self.Height)/6,(Parent.Height-Self.Height)/3)
+                        
+                        If(Parent.Height<Parent.Width,(Image1_21.Height+Image1_21.Y)/1.5,(Image1_21.Height+Image1_21.Y)/3)
+                    ZIndex: =11
+
+                lblStep1CL_4 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 1"
+                    Width: =Parent.Width/5
+                    X: |-
+                        =//If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/4)
+                        Image1_21.X-Image1_21.Width/3
+                    Y: =Image1_21.Y+Image1_21.Height+20
+                    ZIndex: =12
+
+                lblStep2CL_4 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 2"
+                    Width: =Parent.Width/5
+                    X: =Image1_22.X-Image1_22.Width/3
+                    Y: =Image1_21.Y+Image1_21.Height+20
+                    ZIndex: =13
+
+                lblStep3CL_4 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 3"
+                    Width: =Parent.Width/5
+                    X: =Image1_23.X-Image1_23.Width/3
+                    Y: =Image1_21.Y+Image1_21.Height+20
+                    ZIndex: =14
+
+                lblSteo4CL_4 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 4"
+                    Width: =Parent.Width/5
+                    X: =Image1_24.X-Image1_24.Width/3
+                    Y: =Image1_21.Y+Image1_21.Height+20
+                    ZIndex: =15
+
+                lblStep5CL_4 As label:
+                    Font: =Font.Arial
+                    Height: =Parent.Height/5
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 5"
+                    Width: =Parent.Width/5
+                    X: =Image1_25.X-Image1_25.Width/3
+                    Y: =Image1_21.Y+Image1_21.Height+20
+                    ZIndex: =16
+
+                Image1_21 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicator=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicator=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/6)
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =20
+
+                Image1_22 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorUS=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorUS=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine1CL_4.X+IconLine1CL_4.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =21
+
+                Image1_23 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorUS=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorSS=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine2CL_4.X+IconLine2CL_4.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =22
+
+                Image1_24 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorUS=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorES=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine3CL_4.X+IconLine3CL_4.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =23
+
+                Image1_25 As image:
+                    BorderColor: =
+                    Fill: =If(VarIndicatorIS=true,Color.Green,Color.Red)
+                    FocusedBorderThickness: =0
+                    Height: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    Image: =If(VarIndicatorIS=true,'Check_green_icon.svg')
+                    RadiusBottomLeft: =50
+                    RadiusBottomRight: =50
+                    RadiusTopLeft: =50
+                    RadiusTopRight: =50
+                    Width: =If(Parent.Width<378,Parent.Width/16,Parent.Width<500,Parent.Width/18,Parent.Width/20)
+                    X: =IconLine4CL_4.X+IconLine4CL_4.Width
+                    Y: =(Parent.Height-Self.Height)/3.5
+                    ZIndex: =24
+
+            ctnProgressBarIS As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.SetByContainer
+                FillPortions: =0
+                Height: =136
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                Visible: =false
+                Width: =Parent.Width/1.04
+                X: =87
+                Y: =77
+                ZIndex: =2
+
+                CircleSteo1IS As circle:
+                    Fill: =If(VarIndicator=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/6)
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =1
+
+                CircleStep2IS As circle:
+                    Fill: =If(VarIndicatorUS=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine1IS.X+IconLine1IS.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =2
+
+                CircleStep3IS As circle:
+                    Fill: =If(VarIndicatorSS=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine2IS.X+IconLine2IS.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =3
+
+                CircleStep4IS As circle:
+                    Fill: =If(VarIndicator=true,Color.Green,Color.Red)
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine3IS.X+IconLine3IS.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =4
+
+                CircleStep5IS As circle:
+                    Fill: =Color.Red
+                    Height: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    Width: =If(Parent.Width<378,20,Parent.Width<500,30,40)
+                    X: =IconLine4IS.X+IconLine4IS.Width
+                    Y: =If(Parent.Width<378,40,Parent.Width<500,30,30)
+                    ZIndex: =5
+
+                IconTick1IS As icon.Check:
+                    Color: =If(VarIndicator=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleSteo1IS.X+(CircleSteo1IS.Width/4.2)
+                    Y: |-
+                        =//If(Parent.Width<378,Circle1.Height/2,Parent.Width<500,Circle1.Height/2,Circle1.Height/2)
+                        CircleSteo1IS.Y+CircleSteo1IS.Height/6
+                    ZIndex: =6
+
+                IconTick2IS As icon.Check:
+                    Color: =If(VarIndicatorUS=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep2IS.X+(CircleStep2IS.Width/4.2)
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height/6
+                    ZIndex: =7
+
+                IconTick3IS As icon.Check:
+                    Color: =If(VarIndicator=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep3IS.X+(CircleStep3IS.Width/4.2)
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height/6
+                    ZIndex: =8
+
+                IconTick4IS As icon.Check:
+                    Color: =If(VarIndicator=true,Color.White,Color.Red)
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep4IS.X+(CircleStep4IS.Width/4.2)
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height/6
+                    ZIndex: =9
+
+                IconTick5IS As icon.Check:
+                    Color: =Color.Red
+                    Height: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    Icon: =Icon.Check
+                    OnSelect: =
+                    Visible: =false
+                    Width: =If(Parent.Width<378,18,Parent.Width<500,20,25)
+                    X: =CircleStep5IS.X+(CircleStep5IS.Width/4.2)
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height/6
+                    ZIndex: =10
+
+                IconLine1IS As icon.HorizontalLine:
+                    Color: =If(VarIndicator=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleSteo1IS.X+CircleSteo1IS.Width
+                    Y: =22
+                    ZIndex: =11
+
+                IconLine2IS As icon.HorizontalLine:
+                    Color: =If(VarIndicatorUS=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep2IS.X+CircleStep2IS.Width
+                    Y: =22
+                    ZIndex: =12
+
+                IconLine3IS As icon.HorizontalLine:
+                    Color: =If(VarIndicatorSS=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep3IS.X+CircleStep3IS.Width
+                    Y: =22
+                    ZIndex: =13
+
+                IconLine4IS As icon.HorizontalLine:
+                    Color: =If(VarIndicatorES=true,Color.Green,Color.DarkGray)
+                    Height: =51
+                    Icon: =Icon.HorizontalLine
+                    Width: =If(Parent.Width<440,40,Parent.Width<500,55,70)
+                    X: =CircleStep4IS.X+CircleStep4IS.Width
+                    Y: =22
+                    ZIndex: =14
+
+                lblStep1IS As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 1"
+                    Width: =Parent.Width/6
+                    X: |-
+                        =//If(Parent.Width<378,Parent.Width/8,Parent.Width<500,Parent.Width/7,Parent.Width/4)
+                        CircleSteo1IS.X-CircleSteo1IS.Width/3
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height+20
+                    ZIndex: =15
+
+                lblStep2IS As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 2"
+                    Width: =Parent.Width/6
+                    X: =CircleStep2IS.X-CircleStep2IS.Width/3
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height+20
+                    ZIndex: =16
+
+                lblStep3IS As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 3"
+                    Width: =Parent.Width/6
+                    X: =CircleStep3IS.X-CircleStep3IS.Width/3
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height+20
+                    ZIndex: =17
+
+                lblStep4IS As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 4"
+                    Width: =Parent.Width/6
+                    X: =CircleStep4IS.X-CircleStep4IS.Width/3
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height+20
+                    ZIndex: =18
+
+                lblStep5IS As label:
+                    Font: =Font.Arial
+                    Height: =30
+                    Size: =If(Parent.Width<378,11,Parent.Width<500,12,14)
+                    Text: ="Step 5"
+                    Width: =Parent.Width/6
+                    X: =CircleStep5IS.X-CircleStep5IS.Width/4
+                    Y: =CircleSteo1IS.Y+CircleSteo1IS.Height+20
+                    ZIndex: =19
+
+            ctnImageIS As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.None
+                FillPortions: =0
+                Height: =glryImageIS.Height+AddMediaWithImageIS.LayoutMinHeight+ctnButtonIS.Height+400
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =20
+                LayoutMinHeight: =100
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingTop: =10
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                ZIndex: =3
+
+                AddMediaWithImageIS As group:
+                    Height: =5
+                    LayoutMinHeight: =5
+                    LayoutMinWidth: =5
+                    Width: =5
+                    X: =40
+                    Y: =20
+                    ZIndex: =1
+
+                    UploadedImageIS As image:
+                        BorderThickness: =2
+                        DisabledFill: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =If(CountRows(glryImageIS.AllItems)<4,DisplayMode.Edit,DisplayMode.Disabled)
+                        Height: =If(Parent.Width<Parent.Height,200,250)
+                        Image: |-
+                            =If(IsBlank(AddMediaButtonIS.Media), SampleImage, AddMediaButtonIS.Media)
+                            //If(VarImage=true ,SampleImage,AddMediaButtonIS.Media)
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        Width: =Parent.Width/2.5
+                        X: =AddMediaButtonIS.X
+                        Y: =AddMediaButtonIS.Y
+                        ZIndex: =1
+
+                    AddMediaButtonIS As addMedia:
+                        AlignInContainer: =AlignInContainer.Center
+                        ChangePictureText: |-
+                            =//If(CountRows(glryImageIS.AllItems)=4,"Tap or click to add a picture","You Can add only 4 Images.")
+                            "Tap or click to add a picture"
+                        Color: |-
+                            =
+                            If(CountRows(glryImageIS.AllItems)=4,RGBA(255, 0, 0, 1),Color.White)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(77, 77, 77, 1)
+                        DisabledFill: =RGBA(0, 0, 0, 1)
+                        DisplayMode: |-
+                            =If(CountRows(glryImageIS.AllItems)=4,DisplayMode.Disabled,DisplayMode.Edit)
+                            //DisplayMode.Edit
+                        Fill: |-
+                            =
+                            If(CountRows(glryImageIS.AllItems)=4,RGBA(255, 255, 255, 1),RGBA(255, 0, 0, 1))
+                        Height: =60
+                        HoverBorderColor: =//ColorFade(Self.BorderColor, 20%)
+                        OnChange: |
+                            =If(
+                                CountRows(glryImageIS.AllItems) >3 ,
+                                Notify("You Can add only 4 Images."),
+                               If( !IsBlank(UploadedImageIS) || UploadedImageIS.Image<>SampleImage,
+                                Collect(
+                                    LeadImagesCollection,
+                                    {
+                                        Image: UploadedImageIS.Image
+                                    }
+                                ));
+                                
+                                
+                            );
+                        OnSelect: |
+                            =//If(CountRows(Gallery1.AllItems)<4,Collect(LeadImagesCollection,{Image:UploadedImage1.Image}),Notify("You Can add only 4 Images."))
+                        PressedBorderColor: =//ColorFade(Self.BorderColor, -20%)
+                        Reset: =true
+                        Size: =If(Parent.Width<500,16,Parent.Width>500,22,18)
+                        Text: |-
+                            ="Tap or click to add a picture"
+                            //If(CountRows(glryImageIS.AllItems)=4,"Tap or click to add a picture","You Can add only 4 Images.")
+                        Width: =Parent.Width
+                        X: =40
+                        Y: =500
+                        ZIndex: =2
+
+                "glryImageIS As gallery.'BrowseLayout_Vertical_OneImageTwoColumnVariant_ver5.0'":
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DelayItemLoading: =true
+                    FillPortions: =0
+                    Height: =If(glryImageIS.AllItemsCount=0,0,glryImageIS.AllItemsCount=1||glryImageIS.AllItemsCount=2,250,glryImageIS.AllItemsCount=4,550)
+                    Items: |
+                        =LeadImagesCollection
+                    Layout: =Layout.Vertical
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =4
+                    TemplateSize: =Min(250, Self.Height - 60)
+                    Width: =Parent.Width/1.08
+                    WrapCount: =2
+                    ZIndex: =3
+
+                    ImageIS As image:
+                        BorderThickness: =2
+                        Height: =If(Parent.Width>Parent.Height,Parent.TemplateHeight/1.2,Parent.TemplateHeight/1.4)
+                        Image: =ThisItem.Image
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =10
+                        PaddingLeft: =2
+                        PaddingRight: =2
+                        PaddingTop: =10
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
+                        Width: =Parent.TemplateWidth/1.10
+                        ZIndex: =1
+
+                    IconImageIS As icon.Cancel:
+                        Color: =RGBA(255, 0, 0, 1)
+                        Height: =30
+                        Icon: =Icon.Cancel
+                        OnSelect: =Remove(LeadImagesCollection,ThisItem);
+                        Width: =30
+                        X: =ImageIS.Width-Self.Width-10
+                        Y: =ImageIS.Y+10
+                        ZIndex: =2
+
+                ctnButtonIS As groupContainer.verticalAutoLayoutContainer:
+                    AlignInContainer: =AlignInContainer.SetByContainer
+                    DropShadow: =DropShadow.None
+                    FillPortions: =0
+                    Height: =60
+                    LayoutAlignItems: =LayoutAlignItems.Center
+                    LayoutGap: =20
+                    LayoutJustifyContent: =LayoutJustifyContent.Center
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    ZIndex: =4
+
+                    btnPreviousIS As button:
+                        Fill: =RGBA(255, 0, 0, 1)
+                        Height: =53
+                        HoverFill: =Color.Red
+                        OnSelect: |+
+                            =Navigate(EstimateScreen);
+                            Set(VarIndicatorIS,false);
+                            
+                            
+                            
+                            
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Text: ="Previous"
+                        Width: =Parent.Width/4
+                        X: =144
+                        Y: =790
+                        ZIndex: =1
+
+                    btnNextIS As button:
+                        Fill: =RGBA(255, 0, 0, 1)
+                        Height: =53
+                        HoverFill: =Color.Red
+                        OnSelect: |-
+                            =Set(VarIndicator, true );
+                            Set(VarIndicatorUS, true );
+                            Set(VarIndicatorSS, true );
+                            Set(VarIndicatorES,true);
+                            Set(VarIndicatorIS, true );
+                            Navigate(LeadSummaryScreen);
+                        Size: =If(Parent.Width<358,12,Parent.Width>358,14,16)
+                        Text: ="Next"
+                        Width: =Parent.Width/4
+                        X: =145
+                        Y: =790
+                        ZIndex: =2
+
